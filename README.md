@@ -1,1 +1,6 @@
-# ChinatownMassageParlor
+==================================================================================
+
+                                 Texas Hold'em
+
+==================================================================================
+Created by Chinatown Massage Parlor ( Bryan Chan, Datian Zhang, Eric Chen )
