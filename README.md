@@ -3,4 +3,4 @@
                                  Texas Hold'em
 
 ==================================================================================
-Created by EricBryanDatian ( Bryan Chan, Datian Zhang, Eric Chen )
+Created by mandarinOranges ( Bryan Chan, Datian Zhang, Eric Chen )
