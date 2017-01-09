@@ -3,4 +3,4 @@
                                  Texas Hold'em
 
 ==================================================================================
-Created by Chinatown Massage Parlor ( Bryan Chan, Datian Zhang, Eric Chen )
+Created by EricBryanDatian ( Bryan Chan, Datian Zhang, Eric Chen )
