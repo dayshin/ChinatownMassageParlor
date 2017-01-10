@@ -1,4 +1,8 @@
-To do:
++--------------------+
+|Team mandarinOranges|
++--------------------+
+
+To Do List:
 1) Create class files 
 2) Create method(while loop) to print cards from deck randomly in class Table
 3) Create method to print hand for the player(s) in class Player
