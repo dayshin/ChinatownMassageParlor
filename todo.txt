@@ -3,7 +3,20 @@
 +--------------------+
 
 To Do List:
-1) Create class files 
-2) Create method(while loop) to print cards from deck randomly in class Table
-3) Create method to print hand for the player(s) in class Player
-4) 
+--------------------------- MINIMUM VIABLE PRODUCT ---------------------------
+1) Create class files.
+2) Print statements to make the user experience more simple.
+3) Create array with all 52 playing cards.
+4) Create method(while loop) to print cards from deck randomly in class Table.
+5) Create method to print hand for the player(s) in class Player.
+------------------------- END MINIMUM VIABLE PRODUCT -------------------------
+
+--------------------------------- EXTENSIONS ---------------------------------
+6) Create methods for Player actions (call,fold,raise) along with money and table pool.
+7) Further fine-tune the user interface to accept input for the call/fold/raise commands using Keyboard.java
+8) Add compatibility for more than one player to play and allow for input through terminal to determine how many players there will be in that session.
+
+* If time permits: Create an AI that can play against a player.
+* If even more time permits: Create different levels of difficulty for the AI.
+
+---------------------------- FUTURE AUGMENTATIONS ----------------------------
