@@ -1,9 +1,14 @@
 // Team mandarinOranges
 // Bryan Chan, Eric Chen, Datian Zhang
 // APCS1 pd3
+import java.util.ArrayList;
 
 public class Table {
 
+    // D = Diamond
+    // C = Clubs
+    // H = Hearts
+    // S = Spades
     private static final String[] DECK = {
 	"2D","2C","2H","2S",
 	"3D","3C","3H","3S",
@@ -16,32 +21,39 @@ public class Table {
 	"10D","10C","10H","10S",
 	"JD","JC","JH","JS",
 	"QD","QC","QH","QS",
-	"KD","KC","KH","KS"
+	"KD","KC","KH","KS",
 	"AD", "AC", "AH", "AS",
+    };
+
+    private ArrayList<String> _deck;
+
+    private ArrayList<Players> _players;
+
+    public Table(  ) {
+
+	_players = new ArrayList<Players>[2];
+	_players[0] = new Player( getCard(),getCard(),0.0,0.0 );
+	_players[1] = new Player( getCard(),getCard(),0.0,0.0 );
+
+	_deck = new ArrayList<String>();
+	
+	for( int i = 0; i < DECK.length; i++ ){		
+	    _deck.add( DECK[i] );
 	}
 
-
-    //allocates memory for _deck based on size of DECK(see class Slots)
-	public Table(){
-
-	    _deck = new String[DECK.length];
-
-	    for( int i = 0; i < _deck.length; i++ ){		
-		_deck[i] = DECK[i]
-	    }
-	}//end constructor
+    } // end constructor
 
     public String getCard(){
 
+	int randInt = (int)( Math.random() * _deck.size() );
+	String retStr = _deck.get( randInt );
+	_deck.remove( randInt );
+	return retStr;
 	
     }
-	/*public static void main ( String [] args ){
-	for (int i = 1; i < 2; i++ ){
-	    System.out.print( "\"" + "K" + "D" + "\",");
-	    System.out.print( "\"" + "K" + "C" + "\",");
-	    System.out.print( "\"" + "K" + "H" + "\",");
-	    System.out.println( "\"" + "K" + "S" + "\",");	       	    
-	}
-	}*/
+
+    public ArrayList getDeck() {
+	return _deck;
+    }
 
 }

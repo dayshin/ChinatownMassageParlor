@@ -12,12 +12,24 @@ public class Woo {
 	System.out.println( "    Texas Hold'Em    " );
 	System.out.println( "=====================" );
 
+	/*
 	System.out.println( "Please specify how many players there are:" );
 	int numPlayers = Keyboard.readInt();
 
 	System.out.println( "Creating game with " + numPlayers + " players..." );
 
-	// Table game = new Table();
+	Table game = new Table( numPlayers ); // Create new game
+	*/
+
+	Table game = new Table();
+	
+	// FOR TESTING PURPOSES ONLY, REMOVE AFTER
+
+	System.out.println( game.getCard() );
+	System.out.println( game.getDeck() );
+
+	// END TESTING ZONE
+
 
     }
     
