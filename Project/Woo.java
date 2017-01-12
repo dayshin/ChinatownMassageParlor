@@ -8,6 +8,16 @@ public class Woo {
 
     public static void main ( String [] arg )
     {
+	System.out.println( "=====================" );
+	System.out.println( "    Texas Hold'Em    " );
+	System.out.println( "=====================" );
+
+	System.out.println( "Please specify how many players there are:" );
+	int numPlayers = Keyboard.readInt();
+
+	System.out.println( "Creating game with " + numPlayers + " players..." );
+
+	// Table game = new Table();
 
     }
     
