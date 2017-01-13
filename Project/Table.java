@@ -2,7 +2,7 @@
 // Bryan Chan, Eric Chen, Datian Zhang
 // APCS1 pd3
 import java.util.ArrayList;
-
+import cs1.Keyboard;
 public class Table {
 
     // D = Diamond
@@ -25,8 +25,8 @@ public class Table {
 	"AD", "AC", "AH", "AS",
     };
 
-<<<<<<< HEAD
-    //private ArrayList<String> _deck;
+
+    public String[] _deck;
     public static String[] tableCards;
     private ArrayList<Player> _players;
     private static Player firstPlayer;
@@ -36,54 +36,43 @@ public class Table {
 	firstPlayer= new Player( getCard(),getCard(),0,0);
 	secondPlayer= new Player( getCard(),getCard(),0,0);
 
-	//	_deck = new ArrayList<String>();
-	/*for( int i = 0; i < DECK.length; i++ ){	 // copy deck	
-	    _deck.add( DECK[i] );
-	    System.out.println(DECK[i]);*/
-	tableCards=new String[3];
+      	_deck = new String[DECK.length];
+	for( int i = 0; i < DECK.length; i++ ){	 // copy deck	
+	    _deck[i]=  DECK[i];
+	}
+
+	tableCards= new String[3];
 	tableCards[0]=getCard();
 	tableCards[1]=getCard();
 	tableCards[2]=getCard();
-=======
-    private ArrayList<String> _deck;
-    protected ArrayList<String> _setUp;
-    private Player _player1;
-    private Player _player2;
- 
-    
-    public Table() {
-
-	_player1 = new Player(0,0);
-	_player2 = new Player(0,0);
-
-	_deck = new ArrayList<String>();
-	
-	for( int i = 0; i < DECK.length; i++ ){		
-	    _deck.add( DECK[i] );
-	}
-
-	_setUp = new ArrayList<String>();
-	_setUp.add(getCard());
-	_setUp.add(getCard());
-	_setUp.add(getCard());
-
->>>>>>> 97773da2708e171eeb6fbe99086d0ed8702cf5ce
-    } // end constructor
-    
+    }    
+   
     public String getCard(){
-<<<<<<< HEAD
-	return DECK[((int)(Math.random()*DECK.length))];
-=======
 
-	int randInt = (int)( Math.random() * _deck.size());
-	String retStr = _deck.get( randInt );
-	_deck.remove( randInt );
-	return retStr;
+        /*int deckIndex = (int)(Math.random()*_deck.length);
+	String retStr = _deck[deckIndex];
+
+	String temp = _deck[deckIndex];
+	_deck[deckIndex] = _deck[_deck.length - 1];//Swaps with the last item so we can cut it off the deck
+	_deck[_deck.length - 1] = temp;
+
+	String _data[] = new String[_deck.length - 1];
+	for( int i = 0; i < _data.length; i++ ){
+	    _data[i] = _deck[i];
+	}//basically a collapse/truncate method
+
+	_deck = _data;
 	
->>>>>>> 97773da2708e171eeb6fbe99086d0ed8702cf5ce
+	return retStr; */
+	return DECK[((int)(Math.random()*DECK.length))];
+	
     }
     public String getTC(){
-	return tableCards[0] + " " + tableCards[1] + " " + tableCards[2];
+	String retStr = "";
+	for (int i = 0; i < tableCards.length; i++ ){
+	    retStr += " " +  tableCards[i];
+	}
+	return retStr;
     }
     public String getPC1(){
 	return firstPlayer.toString();
@@ -91,16 +80,52 @@ public class Table {
     public String getPC2(){
 	return secondPlayer.toString();
     }
-    /*
-    public ArrayList getDeck() {
-	return _deck;
+    public void expand() 
+    {
+	String _data2[] = new String[tableCards.length + 1];
+	for (int i = 0; i < tableCards.length; i++){
+	    
+	    _data2[i] = tableCards[i];
+	}
+        tableCards = _data2;
     }
-<<<<<<< HEAD
-    */
-    public static void main(String[] args){
-	Table okay = new Table();
-	//	okay.getDeck();
-    }
-=======
->>>>>>> 97773da2708e171eeb6fbe99086d0ed8702cf5ce
+
+
+
+    public void playGame(){
+
+	int choice1 = 0;
+	int choice2 = 0;
+
+	System.out.println("=====================");
+	System.out.println(getTC());
+	System.out.println();
+	System.out.println("Player1's cards: ");
+	System.out.println(getPC1());	
+	System.out.println("Player2's cards: ");
+	System.out.println(getPC2());	// END TESTING ZONE
+
+	while (tableCards.length < 5){
+	    System.out.println("\nPlayer one, please enter 1 if you want call, or 2 if you want to fold.");
+	    choice1 = Keyboard.readInt();
+	    if (choice1 == 1){
+		System.out.println("Player two, please enter 1 if you want call, or 2 if you want to fold.");
+		choice2 = Keyboard.readInt();		
+		if(choice2 == 1){
+		    expand();
+		    tableCards[tableCards.length - 1] = getCard();
+		    playGame();
+		}
+		else{
+		    System.out.println("Round over");
+		    break;		    
+		}
+	    }
+	    else{
+		System.out.println("Round over");
+		break;		
+	    }
+	   
+	}
+    }//end playGame()
 }
