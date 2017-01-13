@@ -5,6 +5,14 @@
 import cs1.Keyboard;
 
 public class Player implements Comparable {
+<<<<<<< HEAD
+    private String Card1;
+    private String Card2;
+    private float playerBet;
+    public Player(String firstCard, String secondCard, float bigBlind, float smallBlind){
+	Card1=firstCard;
+	Card2=secondCard;
+=======
     public String[] hand;
     private float playerBet;
 
@@ -12,15 +20,14 @@ public class Player implements Comparable {
 	hand = new String[2];
 	hand[0]= getCard();
 	hand[1]= getCard();
+>>>>>>> 97773da2708e171eeb6fbe99086d0ed8702cf5ce
 	playerBet=bigBlind+smallBlind;
     }
-    public String[] getHand(){
-	return hand;
-    }
     public String toString(){
-	return hand[0] + " " + hand[1];
+	return Card1 + " " + Card2;
     }
-    public float playerAction(float Amt){
+    /*
+      public float playerAction(float Amt){
 	if(Amt <= playerBet){
 	    System.out.println(
 			       "Welcome to Poker! I'm a bunny.\n " );
@@ -28,9 +35,12 @@ public class Player implements Comparable {
 		}
 	return Keyboard.readFloat();
     }
+    */
     public int compareTo(Player a){
 	// object instanceof Type
-	System.out.println(a.getHand()[0]);	
+        if (Card1.substring(0,1) == (Card2.substring(0,1))){
+	    return 1;
+	}
 	return 0;
     }
     /*  public static void main(String[] args){

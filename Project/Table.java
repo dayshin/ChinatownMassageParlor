@@ -25,6 +25,26 @@ public class Table {
 	"AD", "AC", "AH", "AS",
     };
 
+<<<<<<< HEAD
+    //private ArrayList<String> _deck;
+    public static String[] tableCards;
+    private ArrayList<Player> _players;
+    private static Player firstPlayer;
+    private static Player secondPlayer;
+
+    public Table(){
+	firstPlayer= new Player( getCard(),getCard(),0,0);
+	secondPlayer= new Player( getCard(),getCard(),0,0);
+
+	//	_deck = new ArrayList<String>();
+	/*for( int i = 0; i < DECK.length; i++ ){	 // copy deck	
+	    _deck.add( DECK[i] );
+	    System.out.println(DECK[i]);*/
+	tableCards=new String[3];
+	tableCards[0]=getCard();
+	tableCards[1]=getCard();
+	tableCards[2]=getCard();
+=======
     private ArrayList<String> _deck;
     protected ArrayList<String> _setUp;
     private Player _player1;
@@ -47,18 +67,40 @@ public class Table {
 	_setUp.add(getCard());
 	_setUp.add(getCard());
 
+>>>>>>> 97773da2708e171eeb6fbe99086d0ed8702cf5ce
     } // end constructor
-
+    
     public String getCard(){
+<<<<<<< HEAD
+	return DECK[((int)(Math.random()*DECK.length))];
+=======
 
 	int randInt = (int)( Math.random() * _deck.size());
 	String retStr = _deck.get( randInt );
 	_deck.remove( randInt );
 	return retStr;
 	
+>>>>>>> 97773da2708e171eeb6fbe99086d0ed8702cf5ce
     }
-
+    public String getTC(){
+	return tableCards[0] + " " + tableCards[1] + " " + tableCards[2];
+    }
+    public String getPC1(){
+	return firstPlayer.toString();
+    }
+    public String getPC2(){
+	return secondPlayer.toString();
+    }
+    /*
     public ArrayList getDeck() {
 	return _deck;
     }
+<<<<<<< HEAD
+    */
+    public static void main(String[] args){
+	Table okay = new Table();
+	//	okay.getDeck();
+    }
+=======
+>>>>>>> 97773da2708e171eeb6fbe99086d0ed8702cf5ce
 }
