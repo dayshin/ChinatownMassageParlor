@@ -26,14 +26,15 @@ public class Table {
     };
 
     private ArrayList<String> _deck;
+    protected ArrayList<String> _setUp;
+    private Player _player1;
+    private Player _player2;
+ 
+    
+    public Table() {
 
-    private ArrayList<Players> _players;
-
-    public Table(  ) {
-
-	_players = new ArrayList<Players>[2];
-	_players[0] = new Player( getCard(),getCard(),0.0,0.0 );
-	_players[1] = new Player( getCard(),getCard(),0.0,0.0 );
+	_player1 = new Player(0,0);
+	_player2 = new Player(0,0);
 
 	_deck = new ArrayList<String>();
 	
@@ -41,11 +42,16 @@ public class Table {
 	    _deck.add( DECK[i] );
 	}
 
+	_setUp = new ArrayList<String>();
+	_setUp.add(getCard());
+	_setUp.add(getCard());
+	_setUp.add(getCard());
+
     } // end constructor
 
-    public String getCard(){
+    public static String getCard(){
 
-	int randInt = (int)( Math.random() * _deck.size() );
+	int randInt = (int)( Math.random() * _deck.size());
 	String retStr = _deck.get( randInt );
 	_deck.remove( randInt );
 	return retStr;
@@ -55,5 +61,4 @@ public class Table {
     public ArrayList getDeck() {
 	return _deck;
     }
-
 }

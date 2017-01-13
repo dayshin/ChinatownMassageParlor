@@ -22,6 +22,10 @@ public class Woo {
 	*/
 
 	Table game = new Table();
+       System.out.println( game.getCard() );
+	System.out.println( game.getDeck() );
+
+	System.out.println(game._setUp);
 	
 	// FOR TESTING PURPOSES ONLY, REMOVE AFTER
 
