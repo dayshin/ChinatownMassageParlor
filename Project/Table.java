@@ -49,7 +49,7 @@ public class Table {
 
     } // end constructor
 
-    public static String getCard(){
+    public String getCard(){
 
 	int randInt = (int)( Math.random() * _deck.size());
 	String retStr = _deck.get( randInt );
