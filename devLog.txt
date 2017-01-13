@@ -1,15 +1,73 @@
-Team mandarinOranges
-Bryan Chan, Eric Chen, Datian Zhang
-APCS1 pd3
 
-+---------------+
-|Development Log|
-+---------------+
-1. Created GitHub repo with name mandarinOranges.
-2. Created Project directory in repo.
-3. Created proposal.pdf, which explains the goal of the project.
-4. Created todo.txt, which explains the process we will use to complete the project.
-5. Created Woo.java, Table.java, Player.java files in Project directory.(Eric)
-6. Created devLog.txt, which is this.
-7. Editted Table.java to contain array of cards.(Bryan)
-8. Added constructor for player (Datian)
+mandarinOranges
+Datian Zhang
+Eric Chen
+Bryan Chan
+pd 3
+---------------------
+Texas Holden'em
+
+/////////// Zone of Reflection \\\\\\\\\\\
+------------------------------------------
+OBSTACLES OVERCOME
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wow we so BOSS bc...
+
+UNRESOLVED ISSUES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+blah blah pesky bug...
+maybe some of these will move into the Obs.Ovrcm section...
+
+COOL STUFF LEARNED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wow! oo!...
+
+MID-DEVELOPMENT DESIGN CHANGES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+we changed ___ to ___ bc...
+
+LESSONS LEARNED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tales of wisdom gained...
+||||||||||||||||||||||||||||||||||||||||||
+
+
+
+ ______   ______   __   __   __       ______   _______     
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+==============================================================
+
+
+
+--------------------------------------------------------------
+2017-01-09
+<Datian> :: Created GitHub repo with name mandarinOranges.
+<Datian> :: Created Project directory in repo.
+<Datian, Bryan, Eric> :: Created proposal.pdf, which explains the goal of the project.
+
+--------------------------------------------------------------
+2017-01-10
+<Eric, Bryan> :: Created todo.txt, which explains the process we will use to complete the project.
+<Eric> :: Created Woo.java, Table.java, Player.java files in Project directory.
+
+--------------------------------------------------------------
+2017-01-11
+<Eric, Bryan> :: Created devLog.txt, which is this.
+<Bryan> :: Editted Table.java to contain array of cards.
+<Datian> :: Added constructor for player (Datian)
+
+--------------------------------------------------------------
+2017-01-12
+<Eric, Bryan> :: Worked on class table(added getCard methods,constructor.
+<Datian> :: Player class
+
+
+
+
+
+==============================================================
