@@ -22,7 +22,7 @@ public class Woo {
 	*/
 
 	Table game = new Table();
-<<<<<<< HEAD
+ 
 	System.out.println("Cards of the table");
 	System.out.println(game.getTC());
 	System.out.println();
@@ -30,7 +30,7 @@ public class Woo {
 	System.out.println(game.getPC1());	
 	System.out.println("Player2's cards: ");
 	System.out.println(game.getPC2());	// END TESTING ZONE
-=======
+
        System.out.println( game.getCard() );
 	System.out.println( game.getDeck() );
 
@@ -42,7 +42,6 @@ public class Woo {
 	System.out.println( game.getDeck() );
 
 	// END TESTING ZONE
->>>>>>> 97773da2708e171eeb6fbe99086d0ed8702cf5ce
 
 
     }
