@@ -6,12 +6,12 @@ import cs1.Keyboard;
 
 public class Player implements Comparable {
 
-    private String Card1;
-    private String Card2;
-    private float playerBet;
-    public Player(String firstCard, String secondCard, float bigBlind, float smallBlind){
-	Card1=firstCard;
-	Card2=secondCard;
+    public String Card1;
+    public String Card2;
+    public float playerBet;
+    public Player( float bigBlind, float smallBlind){
+	//Card1=firstCard;
+	//	Card2=secondCard;
     }
 
     public String toString(){

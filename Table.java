@@ -33,23 +33,27 @@ public class Table {
     private static Player secondPlayer;
 
     public Table(){
-	firstPlayer= new Player( getCard(),getCard(),0,0);
-	secondPlayer= new Player( getCard(),getCard(),0,0);
+	firstPlayer= new Player(0,0);
+	secondPlayer= new Player(0,0);
 
       	_deck = new String[DECK.length];
 	for( int i = 0; i < DECK.length; i++ ){	 // copy deck	
 	    _deck[i]=  DECK[i];
 	}
 
-	tableCards= new String[3];
-	tableCards[0]=getCard();
-	tableCards[1]=getCard();
-	tableCards[2]=getCard();
-    }    
+    }
+    /* public static String retArray(String [] arr){
+	String retStr = "";
+	for(String array : arr){
+	    retStr += array + "\n";
+	}
+	return retStr;
+	}*/ //Diag
+
    
     public String getCard(){
 
-        /*int deckIndex = (int)(Math.random()*_deck.length);
+        int deckIndex = (int)(Math.random()*_deck.length);
 	String retStr = _deck[deckIndex];
 
 	String temp = _deck[deckIndex];
@@ -63,8 +67,8 @@ public class Table {
 
 	_deck = _data;
 	
-	return retStr; */
-	return DECK[((int)(Math.random()*DECK.length))];
+	return retStr; 
+	//return DECK[((int)(Math.random()*DECK.length))];
 	
     }
     public String getTC(){
@@ -96,6 +100,18 @@ public class Table {
 
 	int choice1 = 0;
 	int choice2 = 0;
+	
+	firstPlayer.Card1 = getCard();
+	firstPlayer.Card2= getCard();
+	secondPlayer.Card1 = getCard();
+	secondPlayer.Card2 = getCard();
+	
+	tableCards= new String[3];
+	tableCards[0]=getCard();
+	tableCards[1]=getCard();
+	tableCards[2]=getCard();
+    
+	//System.out.print(retArray(_deck)); Diag
 
 	System.out.println("=====================");
 	System.out.println(getTC());
