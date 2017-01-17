@@ -68,7 +68,10 @@ tales of wisdom gained...
 <Datian> :: Started on comparable
 <Datian> :: established basis for MVP
 <Bryan> :: Added minor details to make the game as stated in the todo list
+--------------------------------------------------------------
 
+2017-01-16
+<Bryan> :: Fixed NullPointExceptionError
 
 
 
