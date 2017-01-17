@@ -35,7 +35,7 @@ public class Woo {
 	System.out.println(game.getPC2());      */
 
 
-	game.playGame();			   
+	game.playRound();			   
    
     }//main
     

@@ -96,7 +96,7 @@ public class Table {
 
 
 
-    public void playGame(){
+    public void playRound(){
 
 	int choice1 = 0;
 	int choice2 = 0;
