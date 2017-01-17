@@ -15,8 +15,8 @@ wow we so BOSS bc...
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-blah blah pesky bug...
-maybe some of these will move into the Obs.Ovrcm section...
+
+NullPointExceptionError
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,10 +63,11 @@ tales of wisdom gained...
 
 --------------------------------------------------------------
 2017-01-12
-<Eric, Bryan> :: Worked on class table(added getCard methods,constructor.
+<Eric, Bryan> :: Worked on class table(added getCard methods,constructor
 <Datian> :: Player class, getHand etc.
 <Datian> :: Started on comparable
-
+<Datian> :: established basis for MVP
+<Bryan> :: Added minor details to make the game as stated in the todo list
 
 
 

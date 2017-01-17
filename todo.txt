@@ -13,6 +13,11 @@ To Do List:
 5) Create method to print hand for the player(s) in class Player.
 ------------------------- END MINIMUM VIABLE PRODUCT -------------------------
 
+------------------------------PROBLEM(S) TO FIX-------------------------------
+1) NullPointExceptionError when calling getCard() using _deck instead of DECK
+
+
+
 --------------------------------- EXTENSIONS ---------------------------------
 6) Create methods for Player actions (call,fold,raise) along with money and table pool.
 7) Further fine-tune the user interface to accept input for the call/fold/raise commands using Keyboard.java
