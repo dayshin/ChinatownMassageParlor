@@ -28,7 +28,8 @@ public class Table {
 
     public String[] _deck;
     public static String[] tableCards;
-    private ArrayList<Player> _players;
+    private ArrayList<Player> players;
+    /*
     private static Player firstPlayer;
     private static Player secondPlayer;
 
@@ -42,6 +43,25 @@ public class Table {
 	}
 
     }
+*/
+
+    public Table( int numPlayers ) {
+
+	_deck = new String[DECK.length];
+	for( int i = 0; i < DECK.length; i++ ){	 // copy deck	
+	    _deck[i]=  DECK[i];
+	}
+
+	players = new ArrayList<Player>();
+
+	for ( int i = 1 ; i <= numPlayers ; i += 1 ) {
+	    System.out.println( "What is Player " + i + "'s name?" );
+	    String playerName = Keyboard.readString();
+	    
+	    // players.add( getCard() );
+	}
+    }
+	//playerName = name;
     /* public static String retArray(String [] arr){
 	String retStr = "";
 	for(String array : arr){
@@ -78,12 +98,8 @@ public class Table {
 	}
 	return retStr;
     }
-    public String getPC1(){
-	return firstPlayer.toString();
-    }
-    public String getPC2(){
-	return secondPlayer.toString();
-    }
+    
+
     public void expand() 
     {
 	String _data2[] = new String[tableCards.length + 1];
@@ -95,16 +111,11 @@ public class Table {
     }
 
 
-
     public void playRound(){
 
 	int choice1 = 0;
 	int choice2 = 0;
 	
-	firstPlayer.Card1 = getCard();
-	firstPlayer.Card2= getCard();
-	secondPlayer.Card1 = getCard();
-	secondPlayer.Card2 = getCard();
 	
 	tableCards= new String[3];
 	tableCards[0]=getCard();
@@ -116,6 +127,8 @@ public class Table {
 	System.out.println("=====================");
 	System.out.println(getTC());
 	System.out.println();
+	
+	/*
 	System.out.println("Player1's cards: ");
 	System.out.println(getPC1());	
 	System.out.println("Player2's cards: ");
@@ -130,7 +143,7 @@ public class Table {
 		if(choice2 == 1){
 		    expand();
 		    tableCards[tableCards.length - 1] = getCard();
-		    playGame();
+		    playRound();
 		}
 		else{
 		    System.out.println("Round over");
@@ -143,5 +156,15 @@ public class Table {
 	    }
 	   
 	}
-    }//end playGame()
+	*/
+    }//end playRound()
+
+    /*
+    public void playGame() {
+	
+	
+
+    } // end playGame()
+    */
+
 }

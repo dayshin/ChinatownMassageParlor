@@ -1,25 +1,25 @@
 // Team mandarinOranges
 // APCS1 pd3
 // Final Project -- Texas Hold'Em
-//import cs1.Keyboard;
+import cs1.Keyboard;
 
 public class Woo {
 
     public static void main ( String [] arg )
     {
+	
 	System.out.println( "=====================" );
 	System.out.println( "    Texas Hold'Em    " );
 	System.out.println( "=====================" );
 
-	/*
 	System.out.println( "Please specify how many players there are:" );
 	int numPlayers = Keyboard.readInt();
 
 	System.out.println( "Creating game with " + numPlayers + " players..." );
 
 	Table game = new Table( numPlayers ); // Create new game
-	*/
-
+        
+	/*
 	Table game = new Table();
 	System.out.println("Cards of the table");
 	/* DIAG
