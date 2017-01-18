@@ -63,7 +63,7 @@ tales of wisdom gained...
 
 --------------------------------------------------------------
 2017-01-12
-<Eric, Bryan> :: Worked on class table(added getCard methods,constructor
+<Eric, Bryan> :: Worked on class table(added getCard methods,constructor)
 <Datian> :: Player class, getHand etc.
 <Datian> :: Started on comparable
 <Datian> :: established basis for MVP
@@ -72,7 +72,7 @@ tales of wisdom gained...
 
 2017-01-16
 <Bryan> :: Fixed NullPointExceptionError
-
+<Datian> :: Added launch instructions
 
 
 ==============================================================
