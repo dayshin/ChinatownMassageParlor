@@ -57,8 +57,15 @@ public class Table {
 	for ( int i = 1 ; i <= numPlayers ; i += 1 ) {
 	    System.out.println( "What is Player " + i + "'s name?" );
 	    String playerName = Keyboard.readString();
+	    Player player = new Player();
+	    player.getCard();
+	    player.getCard();
 	    
 	    // players.add( getCard() );
+	}
+
+	for ( int i = 0 ; i < numPlayers ; i += 1 ) {
+	    System.out.println( "" );
 	}
     }
 	//playerName = name;

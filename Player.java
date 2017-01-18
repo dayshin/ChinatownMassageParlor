@@ -8,11 +8,18 @@ public class Player implements Comparable {
 
     public String Card1;
     public String Card2;
+    public float balance;
     public float playerBet;
-    public Player( float bigBlind, float smallBlind){
-	//Card1=firstCard;
-	//	Card2=secondCard;
+
+    public Player() {
+	balance = 1000.00;
+	
     }
+
+    //public Player( float bigBlind, float smallBlind){
+	//Card1=firstCard;
+	//Card2=secondCard;
+    //}
 
     public String toString(){
 	return Card1 + " " + Card2;

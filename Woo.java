@@ -15,6 +15,8 @@ public class Woo {
 	System.out.println( "Please specify how many players there are:" );
 	int numPlayers = Keyboard.readInt();
 
+	if ( numPlayers > 4 ) System.out.println( "Whoa, you're popular!" );
+
 	System.out.println( "Creating game with " + numPlayers + " players..." );
 
 	Table game = new Table( numPlayers ); // Create new game
