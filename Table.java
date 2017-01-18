@@ -27,8 +27,8 @@ public class Table {
 
 
     public String[] _deck;
-    public static String[] tableCards;
     private ArrayList<Player> players;
+    public ArrayList<String> tableCards;
     /*
     private static Player firstPlayer;
     private static Player secondPlayer;
@@ -57,16 +57,11 @@ public class Table {
 	for ( int i = 1 ; i <= numPlayers ; i += 1 ) {
 	    System.out.println( "What is Player " + i + "'s name?" );
 	    String playerName = Keyboard.readString();
-	    Player player = new Player();
-	    player.getCard();
-	    player.getCard();
-	    
-	    // players.add( getCard() );
-	}
+	    Player p = new Player();
+	    p.setName( playerName );
+	    players.add( p );   
+	} // Codeblock idea from http://stackoverflow.com/questions/22335279/creating-multiple-objects-based-on-user-input
 
-	for ( int i = 0 ; i < numPlayers ; i += 1 ) {
-	    System.out.println( "" );
-	}
     }
 	//playerName = name;
     /* public static String retArray(String [] arr){
@@ -100,13 +95,14 @@ public class Table {
     }
     public String getTC(){
 	String retStr = "";
-	for (int i = 0; i < tableCards.length; i++ ){
-	    retStr += " " +  tableCards[i];
+	for (int i = 0; i < tableCards.size(); i++ ){
+	    retStr += " " +  tableCards.get(i);
 	}
 	return retStr;
     }
     
 
+    /*
     public void expand() 
     {
 	String _data2[] = new String[tableCards.length + 1];
@@ -116,25 +112,27 @@ public class Table {
 	}
         tableCards = _data2;
     }
+    */
 
 
     public void playRound(){
+
+	// DEAL CARDS TO PLAYERS HERE
 
 	int choice1 = 0;
 	int choice2 = 0;
 	
 	
-	tableCards= new String[3];
-	tableCards[0]=getCard();
-	tableCards[1]=getCard();
-	tableCards[2]=getCard();
+        tableCards = new ArrayList<String>();
+	tableCards.add( getCard() );
+	tableCards.add( getCard() );
+	tableCards.add( getCard() );
     
 	//System.out.print(retArray(_deck)); Diag
-
-	System.out.println("=====================");
+	System.out.println("===== Table Cards =====");
 	System.out.println(getTC());
 	System.out.println();
-	
+
 	/*
 	System.out.println("Player1's cards: ");
 	System.out.println(getPC1());	

@@ -6,20 +6,31 @@ import cs1.Keyboard;
 
 public class Player implements Comparable {
 
+    public String name;
     public String Card1;
     public String Card2;
-    public float balance;
+    public double balance;
     public float playerBet;
 
     public Player() {
 	balance = 1000.00;
-	
+	name = "Player";
     }
 
     //public Player( float bigBlind, float smallBlind){
 	//Card1=firstCard;
 	//Card2=secondCard;
     //}
+
+    public String getName() {
+	return name;
+    }
+
+    public String setName( String newName ) {
+	String oldName = name;
+	name = newName;
+	return oldName;
+    }
 
     public String toString(){
 	return Card1 + " " + Card2;
