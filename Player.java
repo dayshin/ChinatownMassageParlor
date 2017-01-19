@@ -3,12 +3,15 @@
 // APCS1 pd3
 
 import cs1.Keyboard;
+import java.util.ArrayList;
 
-public class Player implements Comparable {
+
+public class Player /*implements Comparable*/ {
 
     public String name;
     public String Card1;
     public String Card2;
+    public String hand;
     public double balance;
     public float playerBet;
     public Player() {
@@ -25,10 +28,16 @@ public class Player implements Comparable {
 	return name;
     }
 
-    public String setName( String newName ) {
-	String oldName = name;
+    public String getHand(){
+	return hand;
+    }
+
+    public String getBalance(){
+	return balance + "";
+    }
+
+    public void setName( String newName ) {
 	name = newName;
-	return oldName;
     }
 
     public String toString(){
@@ -38,6 +47,7 @@ public class Player implements Comparable {
     public void giveCards( String card1, String card2 ) {
 	Card1 = card1;
 	Card2 = card2;
+	hand = card1 + " " + card2;
     }
     /*
       public float playerAction(float Amt){
@@ -88,18 +98,20 @@ public class Player implements Comparable {
 	tableCards.add(Card2);
 	int maxNum;
 	int maxInd;
-	for(int i=0; i<tableCards.length;i++){
+	//	for(int i=0; i<tableCards.length;i++){
 
 	    // sort all 7 in an array and then list
-    public int compareTo(Player a){
+	    /*  public int compareTo(Player a){
 	// object instanceof Type
 	// return highest number
         
-    }
+	}*/
     /*  public static void main(String[] args){
 	Player Datian = new Player("AD", "AS",0,0);
 	Player Brien = new Player("5D", "3S",0,0);
 	System.out.println(Datian);
 	System.out.println(Brien.compareTo(Datian));
 	}*/
+	return true;
+    }
 }
