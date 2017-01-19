@@ -37,8 +37,8 @@ public class Player implements Comparable {
     }
 
     public void giveCards( String card1, String card2 ) {
-	Card 1 = card1;
-	Card 2 = card2;
+	Card1 = card1;
+	Card2 = card2;
     }
     /*
       public float playerAction(float Amt){

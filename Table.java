@@ -64,13 +64,13 @@ public class Table {
 
     }
 	//playerName = name;
-    /* public static String retArray(String [] arr){
+    public static String retArray(String [] arr){
 	String retStr = "";
 	for(String array : arr){
-	    retStr += array + "\n";
+	    retStr += array + " ";
 	}
 	return retStr;
-	}*/ //Diag
+    } // Diagnostic
 
    
     public String getCard(){
@@ -117,16 +117,18 @@ public class Table {
 
     public void playRound(){
 
+	// System.out.println( retArray( _deck ) ); // Diag
 	for ( Player p : players ) {
 	    p.giveCards( getCard(),getCard() );
 	    System.out.println( p );
 	}
-	// DEAL CARDS TO PLAYERS HERE
+	// System.out.println( retArray( _deck ) ); // Diag
 
+	/*
 	int choice1 = 0;
 	int choice2 = 0;
-	
-	
+	*/	
+
         tableCards = new ArrayList<String>();
 	tableCards.add( getCard() );
 	tableCards.add( getCard() );
