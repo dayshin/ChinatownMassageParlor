@@ -11,7 +11,6 @@ public class Player implements Comparable {
     public String Card2;
     public double balance;
     public float playerBet;
-
     public Player() {
 	balance = 1000.00;
 	name = "Player";
@@ -50,12 +49,52 @@ public class Player implements Comparable {
 	return Keyboard.readFloat();
     }
     */
+    public int card1Val(){
+
+	if ( Card1.substring(0,1) == "J" ){
+	    return 11;
+	}
+	if ( Card1.substring(0,1) == "Q" ){
+	    return 12;
+	}
+	if ( Card1.substring(0,1) == "K" ){
+	    return 13;
+	}
+	return Integer.parseInt(Card1.substring(0,1));
+    }	
+    public int card2Val(){
+
+	if ( Card2.substring(0,1) == "J" ){
+	    return 11;
+	}
+	if ( Card2.substring(0,1) == "Q" ){
+	    return 12;
+	}
+	if ( Card2.substring(0,1) == "K" ){
+	    return 13;
+	}
+	return Integer.parseInt(Card1.substring(0,1));
+    }
+    public String card1suit(){
+	return Card1.substring(1);
+    }
+    public String card2suit(){
+	return Card2.substring(1);
+    }
+    public boolean pair1(ArrayList<String> tableCards){
+	// arranges sorted array of ints - values as well as suites to make it easily manipulated? or just check for each specific thing
+	// royal flush -> four of a kind (suit irrelevant) --> full house (suite irrelevant)  --> flush (suite and number relevant) --> straight
+	tableCards.add(Card1);
+	tableCards.add(Card2);
+	int maxNum;
+	int maxInd;
+	for(int i=0; i<tableCards.length;i++){
+
+	    // sort all 7 in an array and then list
     public int compareTo(Player a){
 	// object instanceof Type
-        if (Card1.substring(0,1) == (Card2.substring(0,1))){
-	    return 1;
-	}
-	return 0;
+	// return highest number
+        
     }
     /*  public static void main(String[] args){
 	Player Datian = new Player("AD", "AS",0,0);
