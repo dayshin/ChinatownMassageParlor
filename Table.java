@@ -28,7 +28,9 @@ public class Table {
 
     public String[] _deck;
     private ArrayList<Player> players;
+    private ArrayList<Player> currentPlayers;
     public ArrayList<String> tableCards;
+    private int stayinBet;
     /*
     private static Player firstPlayer;
     private static Player secondPlayer;
@@ -57,6 +59,7 @@ public class Table {
 	for ( int i = 1 ; i <= numPlayers ; i += 1 ) {
 	    System.out.println( "What is Player " + i + "'s name?" );
 	    String playerName = Keyboard.readString();
+	    // System.out.println("My name is" + " " + playerName);
 	    Player p = new Player();
 	    p.setName( playerName );
 	    players.add( p );
@@ -117,11 +120,47 @@ public class Table {
 
     public void playRound(){
 
+	stayinBet = 100;
+	currentPlayers = new ArrayList<Player>();
+
+	for(int i = 0; i < players.size(); i++){
+	    currentPlayers.add(players.get(i));
+	}
+	System.out.println("\n=====================" + "\nPlayers at this table:" + "\n=====================");
+	for(int i = 0; i < players.size(); i++){
+	    System.out.println(players.get(i).getName());
+	}
+
+
 	// System.out.println( retArray( _deck ) ); // Diag
 	for ( Player p : players ) {
 	    p.giveCards( getCard(),getCard() );
-	    System.out.println( p );
 	}
+
+	for(int i = 0; i < currentPlayers.size(); i++){
+
+	    int action = 0;
+	    System.out.println();
+	    System.out.println( currentPlayers.get(i).getName() + "'s" + " " + "cards are"+ " " + currentPlayers.get(i).getHand() );
+
+	    System.out.println("Your balance is" + " " + currentPlayers.get(i).getBalance());
+	    System.out.println("Would you like to 1. Call, 2. Raise, or 3. Fold");
+	    System.out.println("Please type the integer that corresponds to your decision");
+	    action = Keyboard.readInt();
+
+	    if( action == 3 ){	
+		currentPlayers.remove(i);
+		i--;//if you fold, the array shrinks, this is to avoid skipping over a player
+	    }
+	}
+
+	System.out.println("Players still in the round:");
+	for(int i = 0; i < currentPlayers.size(); i++){
+	    System.out.println(currentPlayers.get(i).getName());
+	}
+
+	
+	    
 	// System.out.println( retArray( _deck ) ); // Diag
 
 	/*
@@ -138,6 +177,10 @@ public class Table {
 	System.out.println("===== Table Cards =====");
 	System.out.println(getTC());
 	System.out.println();
+
+	for (int i = 0; i < players.size(); i++){
+
+	}
 
 	/*
 	System.out.println("Player1's cards: ");
