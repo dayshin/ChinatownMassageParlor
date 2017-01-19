@@ -5,7 +5,7 @@ Eric Chen
 Bryan Chan
 pd 3
 ---------------------
-Texas Holden'em
+Texas Hold'em
 
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
@@ -15,8 +15,7 @@ wow we so BOSS bc...
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-NullPointExceptionError
+Incomplete project :(
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -68,11 +67,40 @@ tales of wisdom gained...
 <Datian> :: Started on comparable
 <Datian> :: established basis for MVP
 <Bryan> :: Added minor details to make the game as stated in the todo list
---------------------------------------------------------------
 
+--------------------------------------------------------------
 2017-01-16
 <Bryan> :: Fixed NullPointExceptionError
 <Datian> :: Added launch instructions
+
+--------------------------------------------------------------
+2017-01-17
+<Eric> :: Incorporated the ability for more players
+
+--------------------------------------------------------------
+2017-01-18
+<Eric> :: Finished making new code compatible with the rest
+<Eric, Bryan, Datian> :: Fine tuned code for future expandability
+
+--------------------------------------------------------------
+2017-01-19
+<Eric> :: Made Table deal two cards to players in playRound() method
+<Eric> :: Created giveCards() method to assign cards to players in Player.java
+<Datian> :: Worked on compareTo function in Player.java
+<Bryan> :: Diagramming and "driving" the progress
+
+--------------------------------------------------------------
+2017-01-20
+
+--------------------------------------------------------------
+2017-01-21
+
+--------------------------------------------------------------
+2017-01-22
+
+--------------------------------------------------------------
+2017-01-23
+Project Due!
 
 
 ==============================================================
