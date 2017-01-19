@@ -87,7 +87,8 @@ tales of wisdom gained...
 <Eric> :: Made Table deal two cards to players in playRound() method
 <Eric> :: Created giveCards() method to assign cards to players in Player.java
 <Datian> :: Worked on compareTo function in Player.java
-<Bryan> :: Diagramming and "driving" the progress
+<Bryan> :: Diagramming and "driving" the progress.
+<Bryan> :: added user interactions, fold, call, and the added some accessor methods for player.
 
 --------------------------------------------------------------
 2017-01-20
