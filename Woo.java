@@ -20,6 +20,7 @@ public class Woo {
 	System.out.println( "Creating game with " + numPlayers + " players..." );
 
 	Table game = new Table( numPlayers ); // Create new game
+	
         
 	/*
 	Table game = new Table();

@@ -35,6 +35,11 @@ public class Player implements Comparable {
     public String toString(){
 	return Card1 + " " + Card2;
     }
+
+    public void giveCards( String card1, String card2 ) {
+	Card 1 = card1;
+	Card 2 = card2;
+    }
     /*
       public float playerAction(float Amt){
 	if(Amt <= playerBet){

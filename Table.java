@@ -59,7 +59,7 @@ public class Table {
 	    String playerName = Keyboard.readString();
 	    Player p = new Player();
 	    p.setName( playerName );
-	    players.add( p );   
+	    players.add( p );
 	} // Codeblock idea from http://stackoverflow.com/questions/22335279/creating-multiple-objects-based-on-user-input
 
     }
@@ -117,6 +117,10 @@ public class Table {
 
     public void playRound(){
 
+	for ( Player p : players ) {
+	    p.giveCards( getCard(),getCard() );
+	    System.out.println( p );
+	}
 	// DEAL CARDS TO PLAYERS HERE
 
 	int choice1 = 0;
