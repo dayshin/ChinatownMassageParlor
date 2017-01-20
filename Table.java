@@ -104,8 +104,9 @@ public class Table {
 	}
 	return retStr;
     }
-    
-
+    public ArrayList<String> getALCards(){
+	return tableCards;
+    }
     /*
     public void expand() 
     {
