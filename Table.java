@@ -30,7 +30,8 @@ public class Table {
     private ArrayList<Player> players;
     private ArrayList<Player> currentPlayers;
     public ArrayList<String> tableCards;
-    private int stayinBet;
+    private int pool;
+    private int stayInBet;
     /*
     private static Player firstPlayer;
     private static Player secondPlayer;
@@ -120,7 +121,7 @@ public class Table {
 
     public void playRound(){
 
-	stayinBet = 100;
+	stayInBet = 100;
 	currentPlayers = new ArrayList<Player>();
 
 	for(int i = 0; i < players.size(); i++){
@@ -141,15 +142,42 @@ public class Table {
 
 	    int action = 0;
 	    System.out.println();
-	    System.out.println( currentPlayers.get(i).getName() + "'s" + " " + "cards are"+ " " + currentPlayers.get(i).getHand() );
+	    System.out.println( "========== Player " + currentPlayers.get(i).getName() + "'s turn ==========" );
+	    System.out.println( "Your cards are"+ " " + currentPlayers.get(i).getHand() );
 
-	    System.out.println("Your balance is" + " " + currentPlayers.get(i).getBalance());
-	    System.out.println("Would you like to 1. Call, 2. Raise, or 3. Fold");
-	    System.out.println("Please type the integer that corresponds to your decision");
+	    System.out.println( "Your balance is" + " " + currentPlayers.get(i).getBalance() );
+	    System.out.println( "Would you like to 1. Call, 2. Raise, or 3. Fold" );
+	    System.out.println( "Please type the integer that corresponds to your decision" );
 	    action = Keyboard.readInt();
 
-	    if( action == 3 ){	
+	    // CALL
+	    if ( action == 1 ) {
+		players.get(i).call();
+		System.out.println( "You called." );
+		System.out.println( "Updated balance: " + players.get(i).getBalance() );
+	    }
+	    // RAISE
+	    else if ( action == 2 ) {
+		System.out.println( "How much would you like to raise by?" );
+		int raiseAmt = Keyboard.readDouble();
+		if ( raiseAmt <= players.get(i).getBalance() ) {
+		    System.out.println( "Successfully raised by " + raiseAmt );
+		}
+		else {
+		    System.out.println( "Not enough money! All-in'd instead!" );
+		}
+		players.get(i).raise( raiseAmt );
+		
+		System.out.println( "Updated balance: " + players.get(i).getBalance() );
+	    }
+	    
+	    // FOLD
+	    else if ( action == 3 ){
+		players.get(i).fold();
 		currentPlayers.remove(i);
+		System.out.println( "You are now out of this round." );
+		System.out.println( "Updated balance: " + players.get(i).getBalance() );
+		System.out.println();
 		i--;//if you fold, the array shrinks, this is to avoid skipping over a player
 	    }
 	}

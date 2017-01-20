@@ -14,6 +14,7 @@ public class Player /*implements Comparable*/ {
     public String hand;
     public double balance;
     public float playerBet;
+
     public Player() {
 	balance = 1000.00;
 	name = "Player";
@@ -40,10 +41,6 @@ public class Player /*implements Comparable*/ {
 	name = newName;
     }
 
-    public String toString(){
-	return Card1 + " " + Card2;
-    }
-
     public void giveCards( String card1, String card2 ) {
 	Card1 = card1;
 	Card2 = card2;
@@ -59,6 +56,32 @@ public class Player /*implements Comparable*/ {
 	return Keyboard.readFloat();
     }
     */
+
+    // Returns how much they call by, ie. if they don't have enough, it just returns their current balance.
+    public double call( double stayInBet ) {
+	int retDouble = balance;
+	if ( balance > stayInBet ) {
+	    retDouble = stayInBet;
+	    balance -= stayInBet;
+	}
+	return retDouble;
+    }
+
+    // RAISE FUNCTION
+
+    // Returns an int that declares whether player should be removed from game or not.
+    // 1 = keep in
+    // 0 = remove
+    public int fold() {
+	int retInt = 0;
+	if ( balance - playerBet >= 0 ) {
+	    balance -= playerBet;
+	    retInt = 1;
+	}
+	return retInt;
+    }
+
+
     public int card1Val(){
 
 	if ( Card1.substring(0,1) == "J" ){
