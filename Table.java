@@ -31,22 +31,22 @@ public class Table {
     private ArrayList<Player> currentPlayers;
     public ArrayList<String> tableCards;
     private int pool;
-    private int stayInBet;
+    private double stayInBet;
     /*
-    private static Player firstPlayer;
-    private static Player secondPlayer;
+      private static Player firstPlayer;
+      private static Player secondPlayer;
 
-    public Table(){
-	firstPlayer= new Player(0,0);
-	secondPlayer= new Player(0,0);
+      public Table(){
+      firstPlayer= new Player(0,0);
+      secondPlayer= new Player(0,0);
 
-      	_deck = new String[DECK.length];
-	for( int i = 0; i < DECK.length; i++ ){	 // copy deck	
-	    _deck[i]=  DECK[i];
-	}
+      _deck = new String[DECK.length];
+      for( int i = 0; i < DECK.length; i++ ){	 // copy deck	
+      _deck[i]=  DECK[i];
+      }
 
-    }
-*/
+      }
+    */
 
     public Table( int numPlayers ) {
 
@@ -67,7 +67,7 @@ public class Table {
 	} // Codeblock idea from http://stackoverflow.com/questions/22335279/creating-multiple-objects-based-on-user-input
 
     }
-	//playerName = name;
+    //playerName = name;
     public static String retArray(String [] arr){
 	String retStr = "";
 	for(String array : arr){
@@ -108,15 +108,15 @@ public class Table {
 	return tableCards;
     }
     /*
-    public void expand() 
-    {
-	String _data2[] = new String[tableCards.length + 1];
-	for (int i = 0; i < tableCards.length; i++){
+      public void expand() 
+      {
+      String _data2[] = new String[tableCards.length + 1];
+      for (int i = 0; i < tableCards.length; i++){
 	    
-	    _data2[i] = tableCards[i];
-	}
-        tableCards = _data2;
-    }
+      _data2[i] = tableCards[i];
+      }
+      tableCards = _data2;
+      }
     */
 
 
@@ -138,116 +138,121 @@ public class Table {
 	for ( Player p : players ) {
 	    p.giveCards( getCard(),getCard() );
 	}
-
-	for(int i = 0; i < currentPlayers.size(); i++){
-
-	    int action = 0;
-	    System.out.println();
-	    System.out.println( "========== Player " + currentPlayers.get(i).getName() + "'s turn ==========" );
-	    System.out.println( "Your cards are"+ " " + currentPlayers.get(i).getHand() );
-
-	    System.out.println( "Your balance is" + " " + currentPlayers.get(i).getBalance() );
-	    System.out.println( "Would you like to 1. Call, 2. Raise, or 3. Fold" );
-	    System.out.println( "Please type the integer that corresponds to your decision" );
-	    action = Keyboard.readInt();
-
-	    // CALL
-	    if ( action == 1 ) {
-		players.get(i).call();
-		System.out.println( "You called." );
-		System.out.println( "Updated balance: " + players.get(i).getBalance() );
-	    }
-	    // RAISE
-	    else if ( action == 2 ) {
-		System.out.println( "How much would you like to raise by?" );
-		int raiseAmt = Keyboard.readDouble();
-		if ( raiseAmt <= players.get(i).getBalance() ) {
-		    System.out.println( "Successfully raised by " + raiseAmt );
-		}
-		else {
-		    System.out.println( "Not enough money! All-in'd instead!" );
-		}
-		players.get(i).raise( raiseAmt );
-		
-		System.out.println( "Updated balance: " + players.get(i).getBalance() );
-	    }
-	    
-	    // FOLD
-	    else if ( action == 3 ){
-		players.get(i).fold();
-		currentPlayers.remove(i);
-		System.out.println( "You are now out of this round." );
-		System.out.println( "Updated balance: " + players.get(i).getBalance() );
+	while (tableCards.size() < 6) {
+	    for(int i = 0; i < currentPlayers.size(); i++){
+		    
+		int action = 0;
 		System.out.println();
-		i--;//if you fold, the array shrinks, this is to avoid skipping over a player
-	    }
-	}
+		System.out.println( "========== Player " + currentPlayers.get(i).getName() + "'s turn ==========" );
+		System.out.println( "Your cards are"+ " " + currentPlayers.get(i).getHand() );
+		    
+		System.out.println( "Your balance is" + " " + currentPlayers.get(i).getBalance() );
+		System.out.println( "Would you like to 1. Call, 2. Raise, or 3. Fold" );
+		System.out.println( "Please type the integer that corresponds to your decision" );
+		action = Keyboard.readInt();
 
-	System.out.println("Players still in the round:");
-	for(int i = 0; i < currentPlayers.size(); i++){
-	    System.out.println(currentPlayers.get(i).getName());
-	}
-
-	
+		// CALL
+		if ( action == 1 ) {
+		    players.get(i).callRaise(stayInBet); // callRaise is universal method for calling raising and folding
+		    System.out.println( "You called." );
+		    System.out.println( "Updated balance: " + players.get(i).getBalance() );
+		}
+		// RAISE
+		else if ( action == 2 ) {
+		    System.out.println( "How much would you like to raise by? ( Must be above " + stayInBet + "." );
+		    double raiseAmt = Keyboard.readDouble();
+		    players.get(i).callRaise( raiseAmt );
+		    if ( raiseAmt > stayInBet ){
+			stayInBet=raiseAmt;
+			System.out.println( "Raise - current bet amount is now " + stayInBet);
+		    }
+		    else {
+			System.out.println( "Not enough money! All-in'd instead!" );
+			pool+=raiseAmt;		
+		    }
+		    System.out.println( "Updated balance: " + players.get(i).getBalance() );
+		}
 	    
-	// System.out.println( retArray( _deck ) ); // Diag
+		// FOLD
+		else if ( action == 3 ){
+		    players.get(i).callRaise(0);
+		    currentPlayers.remove(i);
+		    System.out.println( "You are now out of this round." );
+		    System.out.println( "Updated balance: " + players.get(i).getBalance() );
+		    System.out.println();
+		    i--;//if you fold, the array shrinks, this is to avoid skipping over a player
+		}
+	    }
+	    System.out.println("Players still in the round:");
+	    for(int i = 0; i < currentPlayers.size(); i++){
+		System.out.println(currentPlayers.get(i).getName());
+	    }
+	    tableCards.add(getCard());
+	}
+    }
+}
+	
+/* Graveyard
+// System.out.println( retArray( _deck ) ); // Diag
 
-	/*
-	int choice1 = 0;
-	int choice2 = 0;
-	*/	
 
-        tableCards = new ArrayList<String>();
-	tableCards.add( getCard() );
-	tableCards.add( getCard() );
-	tableCards.add( getCard() );
+int choice1 = 0;
+int choice2 = 0;
+       
+
+tableCards = new ArrayList<String>();
+tableCards.add( getCard() );
+tableCards.add( getCard() );
+tableCards.add( getCard() );
     
-	//System.out.print(retArray(_deck)); Diag
-	System.out.println("===== Table Cards =====");
-	System.out.println(getTC());
-	System.out.println();
+//System.out.print(retArray(_deck)); Diag
+System.out.println("===== Table Cards =====");
+System.out.println(getTC());
+System.out.println();
 
-	for (int i = 0; i < players.size(); i++){
-
-	}
-
-	/*
-	System.out.println("Player1's cards: ");
-	System.out.println(getPC1());	
-	System.out.println("Player2's cards: ");
-	System.out.println(getPC2());	// END TESTING ZONE
-
-	while (tableCards.length < 5){
-	    System.out.println("\nPlayer one, please enter 1 if you want call, or 2 if you want to fold.");
-	    choice1 = Keyboard.readInt();
-	    if (choice1 == 1){
-		System.out.println("Player two, please enter 1 if you want call, or 2 if you want to fold.");
-		choice2 = Keyboard.readInt();		
-		if(choice2 == 1){
-		    expand();
-		    tableCards[tableCards.length - 1] = getCard();
-		    playRound();
-		}
-		else{
-		    System.out.println("Round over");
-		    break;		    
-		}
-	    }
-	    else{
-		System.out.println("Round over");
-		break;		
-	    }
-	   
-	}
-	*/
-    }//end playRound()
-
-    /*
-    public void playGame() {
-	
-	
-
-    } // end playGame()
-    */
+for (int i = 0; i < players.size(); i++){
 
 }
+
+/*
+System.out.println("Player1's cards: ");
+System.out.println(getPC1());	
+System.out.println("Player2's cards: ");
+System.out.println(getPC2());	// END TESTING ZONE
+
+while (tableCards.length < 5){
+System.out.println("\nPlayer one, please enter 1 if you want call, or 2 if you want to fold.");
+choice1 = Keyboard.readInt();
+if (choice1 == 1){
+System.out.println("Player two, please enter 1 if you want call, or 2 if you want to fold.");
+choice2 = Keyboard.readInt();		
+if(choice2 == 1){
+expand();
+tableCards[tableCards.length - 1] = getCard();
+playRound();
+}
+else{
+System.out.println("Round over");
+break;		    
+}
+}
+else{
+System.out.println("Round over");
+break;		
+}
+	   
+}
+/
+}//end playRound()
+
+  
+public void playGame() {
+	
+	
+
+} // end playGame()
+ 
+
+}
+
+*/

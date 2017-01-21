@@ -58,28 +58,28 @@ public class Player /*implements Comparable*/ {
     */
 
     // Returns how much they call by, ie. if they don't have enough, it just returns their current balance.
-    public double call( double stayInBet ) {
-	int retDouble = balance;
-	if ( balance > stayInBet ) {
-	    retDouble = stayInBet;
-	    balance -= stayInBet;
+    // Raise the same way
+    public double callRaise( double stayInBet ) {
+	if( stayInBet == 0 ){
+	    return 0;
 	}
-	return retDouble;
-    }
+	if ( balance >= stayInBet){
+	    double retDouble = balance;
+	    if ( stayInBet > balance ) {
+		balance=0;
+		return retDouble;
+	    }
+	}
+	balance-=stayInBet;
+	return stayInBet;
+    }     
 
     // RAISE FUNCTION
 
     // Returns an int that declares whether player should be removed from game or not.
     // 1 = keep in
     // 0 = remove
-    public int fold() {
-	int retInt = 0;
-	if ( balance - playerBet >= 0 ) {
-	    balance -= playerBet;
-	    retInt = 1;
-	}
-	return retInt;
-    }
+
 
 
     public int card1Val(){
@@ -114,7 +114,7 @@ public class Player /*implements Comparable*/ {
     public String card2suit(){
 	return Card2.substring(1);
     }
-    public boolean pair1(ArrayList<String> tableCards){
+    public ArrayList<String> allCards(ArrayList<String> tableCards){
 	// arranges sorted array of ints - values as well as suites to make it easily manipulated? or just check for each specific thing
 	// royal flush -> four of a kind (suit irrelevant) --> full house (suite irrelevant)  --> flush (suite and number relevant) --> straight
 	tableCards.add(Card1);
@@ -135,6 +135,6 @@ public class Player /*implements Comparable*/ {
 	System.out.println(Datian);
 	System.out.println(Brien.compareTo(Datian));
 	}*/
-	return true;
+	return tableCards;
     }
 }
