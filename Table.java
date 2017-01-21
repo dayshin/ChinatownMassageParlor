@@ -65,7 +65,10 @@ public class Table {
 	    p.setName( playerName );
 	    players.add( p );
 	} // Codeblock idea from http://stackoverflow.com/questions/22335279/creating-multiple-objects-based-on-user-input
-
+	tableCards = new ArrayList<String>();
+	tableCards.add( getCard() );
+	tableCards.add( getCard() );
+	tableCards.add( getCard() );
     }
     //playerName = name;
     public static String retArray(String [] arr){
@@ -197,7 +200,7 @@ public class Table {
 
 
 int choice1 = 0;
-int choice2 = 0;
+nt choice2 = 0;
        
 
 tableCards = new ArrayList<String>();
