@@ -37,8 +37,9 @@ public class Player /*implements Comparable*/ {
     public String getBalance(){
 	return balance + "";
     }
-    public void setRB(double betAmount){ // set player bet to 0 after every round, to bigblind/100 other times
-	playerBet=betAmount;
+    
+    public void setRB( double betAmount ) { // set player bet to 0 after every round, to bigblind/100 other times
+	playerBet = betAmount;
     }
 
     public void setName( String newName ) {
@@ -74,7 +75,7 @@ public class Player /*implements Comparable*/ {
 	    return retDouble;
 	}
 	
-	balance= balance - stayInBet + playerBet; // add what player already bet that round, subtract how much it takes to stay in bet for that round
+	balance = balance - stayInBet + playerBet; // add what player already bet that round, subtract how much it takes to stay in bet for that round
 	return stayInBet; // how much total bet is
     }     
 
@@ -93,7 +94,8 @@ public class Player /*implements Comparable*/ {
 	    return 13;
 	}
 	return Integer.parseInt(Card1.substring(0,1));
-    }	
+    }
+    
     public int card2Val(){
 
 	if ( Card2.substring(0,1) == "J" ){
@@ -107,12 +109,15 @@ public class Player /*implements Comparable*/ {
 	}
 	return Integer.parseInt(Card1.substring(0,1));
     }
+    
     public String card1suit(){
 	return Card1.substring(1);
     }
+    
     public String card2suit(){
 	return Card2.substring(1);
     }
+    
     public ArrayList<String> allCards(ArrayList<String> tableCards){
 	// arranges sorted array of ints - values as well as suites to make it easily manipulated? or just check for each specific thing
 	// royal flush -> four of a kind (suit irrelevant) --> full house (suite irrelevant)  --> flush (suite and number relevant) --> straight
