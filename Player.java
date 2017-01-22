@@ -13,7 +13,8 @@ public class Player /*implements Comparable*/ {
     public String Card2;
     public String hand;
     public double balance;
-    public float playerBet;
+    public double playerBet; // playerBet for every round - resets to 0 after every round
+    public double totalBet; // totalBet is for all 3 rounds
 
     public Player() {
 	balance = 1000.00;
@@ -35,6 +36,9 @@ public class Player /*implements Comparable*/ {
 
     public String getBalance(){
 	return balance + "";
+    }
+    public void setRB(double betAmount){ // set player bet to 0 after every round, to bigblind/100 other times
+	playerBet=betAmount;
     }
 
     public void setName( String newName ) {
@@ -60,25 +64,20 @@ public class Player /*implements Comparable*/ {
     // Returns how much they call by, ie. if they don't have enough, it just returns their current balance.
     // Raise the same way
     public double callRaise( double stayInBet ) {
-	if( stayInBet == 0 ){
+	if( stayInBet == 0 ){ // fold or check, no more money put inside
 	    return 0;
 	}
-	if ( balance >= stayInBet){
+	 // raise or call doesn't matter from player end
+	if ( stayInBet >= balance){
 	    double retDouble = balance;
-	    if ( stayInBet > balance ) {
-		balance=0;
-		return retDouble;
-	    }
+	    playerBet += balance; // always adding balance, player could've bet before
+	    return retDouble;
 	}
-	balance-=stayInBet;
-	return stayInBet;
+	
+	balance= balance - stayInBet + playerBet; // add what player already bet that round, subtract how much it takes to stay in bet for that round
+	return stayInBet; // how much total bet is
     }     
 
-    // RAISE FUNCTION
-
-    // Returns an int that declares whether player should be removed from game or not.
-    // 1 = keep in
-    // 0 = remove
 
 
 

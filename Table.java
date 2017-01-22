@@ -32,6 +32,8 @@ public class Table {
     public ArrayList<String> tableCards;
     private int pool;
     private double stayInBet;
+    private int numRaises;
+    private int currentIndex;
     /*
       private static Player firstPlayer;
       private static Player secondPlayer;
@@ -49,7 +51,7 @@ public class Table {
     */
 
     public Table( int numPlayers ) {
-
+	
 	_deck = new String[DECK.length];
 	for( int i = 0; i < DECK.length; i++ ){	 // copy deck	
 	    _deck[i]=  DECK[i];
@@ -69,6 +71,8 @@ public class Table {
 	tableCards.add( getCard() );
 	tableCards.add( getCard() );
 	tableCards.add( getCard() );
+	numRaises=0;
+	currentIndex=0;
     }
     //playerName = name;
     public static String retArray(String [] arr){
@@ -122,28 +126,23 @@ public class Table {
       }
     */
 
-
     public void playRound(){
 
 	stayInBet = 100;
 	currentPlayers = new ArrayList<Player>();
-
+	for ( Player p : players ) {
+	    p.giveCards( getCard(),getCard() );
+	}
 	for(int i = 0; i < players.size(); i++){
 	    currentPlayers.add(players.get(i));
 	}
 	System.out.println("\n=====================" + "\nPlayers at this table:" + "\n=====================");
-	for(int i = 0; i < players.size(); i++){
-	    System.out.println(players.get(i).getName());
-	}
-
-
-	// System.out.println( retArray( _deck ) ); // Diag
-	for ( Player p : players ) {
-	    p.giveCards( getCard(),getCard() );
-	}
-	while (tableCards.size() < 6) {
-	    for(int i = 0; i < currentPlayers.size(); i++){
-		    
+	int i;
+	while (tableCards.size() <= 5){
+	    i=0;
+	    
+	    while( i < players.size()){ // needs to be a while loop to mess with incrementer
+	    
 		int action = 0;
 		System.out.println();
 		System.out.println( "========== Player " + currentPlayers.get(i).getName() + "'s turn ==========" );
@@ -155,19 +154,25 @@ public class Table {
 		action = Keyboard.readInt();
 
 		// CALL
+
 		if ( action == 1 ) {
 		    players.get(i).callRaise(stayInBet); // callRaise is universal method for calling raising and folding
+		    pool+=stayInBet;
 		    System.out.println( "You called." );
-		    System.out.println( "Updated balance: " + players.get(i).getBalance() );
+		    System.out.println( "Updated balance: " + players.get(currentIndex).getBalance() );
 		}
+
 		// RAISE
+
 		else if ( action == 2 ) {
-		    System.out.println( "How much would you like to raise by? ( Must be above " + stayInBet + "." );
+		    System.out.println( "How much would you like to raise by? ( Must be AT LEAST " + (stayInBet + 100) + " )" ); // add in 100 increments
 		    double raiseAmt = Keyboard.readDouble();
 		    players.get(i).callRaise( raiseAmt );
 		    if ( raiseAmt > stayInBet ){
 			stayInBet=raiseAmt;
 			System.out.println( "Raise - current bet amount is now " + stayInBet);
+			numRaises++;
+			pool+=raiseAmt;
 		    }
 		    else {
 			System.out.println( "Not enough money! All-in'd instead!" );
@@ -177,6 +182,7 @@ public class Table {
 		}
 	    
 		// FOLD
+
 		else if ( action == 3 ){
 		    players.get(i).callRaise(0);
 		    currentPlayers.remove(i);
@@ -185,17 +191,34 @@ public class Table {
 		    System.out.println();
 		    i--;//if you fold, the array shrinks, this is to avoid skipping over a player
 		}
-	    }
+   
+
+		if ( (i == players.size() - 1) && (numRaises > 0 ) ) {// resets the loop
+		    i=0; // resets i 
+		    numRaises--;
+		}
+		else {
+		    i++;
+		}
+	    } // ends loop within raises
 	    System.out.println("Players still in the round:");
-	    for(int i = 0; i < currentPlayers.size(); i++){
-		System.out.println(currentPlayers.get(i).getName());
+	    for(int k = 0; k < currentPlayers.size(); k++){
+		System.out.println(currentPlayers.get(k).getName()); // return names of each player
+		currentPlayers.get(k).setRB(0); // set each player bet to 0 ( how much needed at starting round )
+		stayInBet=0; // this resets every round, only has 100 for first round ( acts as 'big blind' ) 
 	    }
+	    stayInBet=0;
 	    tableCards.add(getCard());
-	}
-    }
-}
-	
+	    System.out.println("Pool of $ bills: " + pool + "$ USD" );
+	} // ends loop within number of cards
+    } // end playGame
+} // end table
+
 /* Graveyard
+
+
+	// System.out.println( retArray( _deck ) ); // Diag
+
 // System.out.println( retArray( _deck ) ); // Diag
 
 
@@ -258,4 +281,12 @@ public void playGame() {
 
 }
 
+
+	while (tableCards.size() < 6) {
+	   
+	    
+	    if ( (i == currentPlayers.size() - 1) && (numRaises > 0 ) ){
+		i=-1; // it will iterate up and start loop over again :))))
+		numRaises--;
+	    }
 */
