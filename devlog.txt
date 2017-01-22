@@ -92,9 +92,14 @@ tales of wisdom gained...
 
 --------------------------------------------------------------
 2017-01-21
-<Datian>: Added multiple instance variables, made the game run smoothly for one full round 
-<Bryan, Datian> Call, raise, fold run smoothly
-<Datian> Merged call raise fold together, pool amount is tracked
+<Datian> :: Added multiple instance variables, made the game run smoothly for one full round 
+<Bryan, Datian> :: Call, raise, fold run smoothly
+<Datian> :: Merged call raise fold together, pool amount is tracked
+
+<Eric,Bryan> :: Completely restructured playRound(), incorporated more functions for ease of programming.
+<Eric,Bryan> :: Betting UX improved, made calling, folding, raising work properly-ish.
+<Eric> :: Removed currentPlayers ArrayList, used attribute inRound in Player to determine which players are still in the round.
+<Eric,Bryan> :: Added compatibility for future rounds.
 --------------------------------------------------------------
 2017-01-22
 
