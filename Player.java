@@ -44,9 +44,9 @@ public class Player /*implements Comparable*/ {
 	return inRound;
     }
     
-    public void setRB( double betAmount ) { // set player bet to 0 after every round, to bigblind/100 other times
+    /*public void setRB( double betAmount ) { // set player bet to 0 after every round, to bigblind/100 other times
 	playerBet = betAmount;
-    }
+	}*/
 
     public void setName( String newName ) {
 	name = newName;
