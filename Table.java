@@ -68,9 +68,7 @@ public class Table {
 	    players.add( p );
 	} // Codeblock idea from http://stackoverflow.com/questions/22335279/creating-multiple-objects-based-on-user-input
 	tableCards = new ArrayList<String>();
-	tableCards.add( getCard() );
-	tableCards.add( getCard() );
-	tableCards.add( getCard() );
+
 	numRaises=0;
 	currentIndex=0;
     }
@@ -137,10 +135,13 @@ public class Table {
 	    currentPlayers.add(players.get(i));
 	}
 	System.out.println("\n=====================" + "\nPlayers at this table:" + "\n=====================");
+
 	int i;
-	while (tableCards.size() <= 5){
-	    i=0;
-	    
+	int roundNumber=0;
+	
+	while (roundNumber < 3){
+	    i=0; // lit for a FULL ROUND!
+	    System.out.println(" Current cards on the table:" + tableCards + " "); 
 	    while( i < players.size()){ // needs to be a while loop to mess with incrementer
 	    
 		int action = 0;
@@ -208,7 +209,14 @@ public class Table {
 		stayInBet=0; // this resets every round, only has 100 for first round ( acts as 'big blind' ) 
 	    }
 	    stayInBet=0;
-	    tableCards.add(getCard());
+	    if (roundNumber==0){
+		    tableCards.add( getCard() );
+		    tableCards.add( getCard() );
+		    tableCards.add( getCard() );
+		}
+	    else{
+		tableCards.add(getCard());
+	    }
 	    System.out.println("Pool of $ bills: " + pool + "$ USD" );
 	} // ends loop within number of cards
     } // end playGame
