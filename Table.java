@@ -123,6 +123,9 @@ public class Table {
       tableCards = _data2;
       }
     */
+    public void printstayInBet(){
+	System.out.println("The bet required to stay in the round is" + " " + stayInBet);
+    }
 
     public void playRound(){
 
