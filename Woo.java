@@ -5,8 +5,14 @@ import cs1.Keyboard;
 
 public class Woo {
 
+    // Credits to XinYi Chen for discovering.
+    public static void clearScreen() {
+	System.out.println( "printf \"\033c\"" );
+    }
+
     public static void main ( String [] arg )
     {
+	clearScreen();
 	
 	System.out.println( "=====================" );
 	System.out.println( "    Texas Hold'Em    " );
@@ -37,9 +43,10 @@ public class Woo {
 	System.out.println("Player2's cards: ");
 	System.out.println(game.getPC2());      */
 
+	//while ( game.getPlayers().size() > 1 ) game.playRound();
 
-	game.playRound();			   
-   
+	game.playRound();
+	    
     }//main
     
 }

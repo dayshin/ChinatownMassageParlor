@@ -25,12 +25,11 @@ public class Table {
 	"AD", "AC", "AH", "AS",
     };
 
-
     public String[] _deck;
     private ArrayList<Player> players;
     private ArrayList<Player> currentPlayers;
     public ArrayList<String> tableCards;
-    private int pool;
+    private double pool;
     private double stayInBet;
     private int numRaises;
     private int currentIndex;
@@ -51,11 +50,6 @@ public class Table {
     */
 
     public Table( int numPlayers ) {
-	
-	_deck = new String[DECK.length];
-	for( int i = 0; i < DECK.length; i++ ){	 // copy deck	
-	    _deck[i]=  DECK[i];
-	}
 
 	players = new ArrayList<Player>();
 
@@ -72,7 +66,11 @@ public class Table {
 	numRaises=0;
 	currentIndex=0;
     }
-    //playerName = name;
+
+    public ArrayList<Player> getPlayers() {
+	return players;
+    }
+    
     public static String retArray(String [] arr){
 	String retStr = "";
 	for(String array : arr){
@@ -81,6 +79,11 @@ public class Table {
 	return retStr;
     } // Diagnostic
 
+    // Credits to XinYi Chen for discovering this method!
+    public static void clearScreen() {
+	String cls = "printf \"\033c\"";
+	System.out.println(cls);
+    }
    
     public String getCard(){
 
@@ -123,181 +126,169 @@ public class Table {
       tableCards = _data2;
       }
     */
-    public void printstayInBet(){
-	System.out.println("The bet required to stay in the round is" + " " + stayInBet);
+
+    public void prompt( Player p ) {
+	System.out.println();
+
+	System.out.println( "========== Player " + p.getName() + "'s turn ==========" );
+	System.out.println( "Your cards are " + p.getHand() );
+		    
+	System.out.println( "Your balance is " + p.getBalance() );
+	System.out.println( "The current pool is " + pool );
+	System.out.println( "The bet required to stay in the round is: " + stayInBet );
+		
+	System.out.println( "Would you like to 1. Call, 2. Raise, or 3. Fold" );
+	System.out.println( "Please type the integer that corresponds to your decision" );
+
+	int action = Keyboard.readInt();
+
+	clearScreen();
+
+	// CALL
+	if ( action == 1 ) {
+	    p.callRaise(stayInBet); // callRaise is universal method for calling raising and folding
+	    pool += stayInBet;
+	    System.out.println( "You called." );
+	    System.out.println( "Updated balance: " + p.getBalance() );
+	}
+
+	// RAISE
+	else if ( action == 2 ) {
+
+	    System.out.println( "Your balance is " + p.getBalance() );
+	    System.out.println( "The current pool is " + pool );
+	    System.out.println( "The bet required to stay in the round is: " + stayInBet );
+	    System.out.println( "How much would you like to raise by? ( Must be at least " + (stayInBet + 50) + " )" ); // add in 50 increments
+	    double raiseAmt = Keyboard.readDouble();
+	    p.callRaise( raiseAmt );
+
+	    clearScreen();
+	    
+	    if ( raiseAmt >= ( stayInBet + 50 ) ){
+		stayInBet = raiseAmt;
+		System.out.println( "Raise - current bet amount is now " + raiseAmt);
+		numRaises++;
+		pool += raiseAmt;
+	    }
+	    
+	    else {
+		System.out.println( "Not enough money! All-in'd instead!" );
+		pool+=raiseAmt;		
+	    }
+	    System.out.println( "Updated balance: " + p.getBalance() );
+	}
+	    
+	// FOLD
+	else if ( action == 3 ){
+	    p.callRaise(0);
+	    p.setInRound( false );
+	    System.out.println( "You are now out of this round." );
+	    System.out.println( "Updated balance: " + p.getBalance() );
+	    System.out.println();
+	}
+	
     }
 
+    // Returns true if there is no winner yet.
+    // Returns false if exactly one player is in the game.
+    public boolean hasNoWinner( ArrayList<Player> players ) {
+	boolean retBool = true;
+	int counter = 0;
+	for ( int i = 0 ; i < players.size() ; i++ ) {
+	    if ( players.get(i).isInRound() ) counter++;
+	}
+	if ( counter == 1 ) retBool = false;
+	return retBool;
+    }
+    
     public void playRound(){
 
-	stayInBet = 100;
-	currentPlayers = new ArrayList<Player>();
-	for ( Player p : players ) {
-	    p.giveCards( getCard(),getCard() );
+	// Reset tableCards
+	for ( int i = 0 ; i < tableCards.size() ; i++ ) {
+	    tableCards.remove(0);
 	}
-	for(int i = 0; i < players.size(); i++){
-	    currentPlayers.add(players.get(i));
+
+	// Creates new deck for the round, copy of DECK.
+	_deck = new String[DECK.length];
+	for( int i = 0; i < DECK.length; i++ ){
+	    _deck[i]=  DECK[i];
 	}
+
+	stayInBet = 100; // Starting bet
+
 	//	System.out.println("\n=====================" + "\nPlayers at this table:" + "\n====================="); misplaced for now - probably irrelevant
-	int i;
-	int roundNumber=0;
+	    	    
+	for ( int i = 0 ; i < players.size() ; i++ ){
+	    players.get(i).giveCards( getCard(),getCard() );
+	    prompt( players.get(i) );
+	} // ends loop within raises
+
+	// Print out remaining players
+	System.out.println( "===========================" );
+	System.out.println("Players still in the round:");
+	for(int k = 0; k < players.size(); k++){
+	    if ( players.get(k).isInRound() ) {
+		System.out.println(players.get(k).getName()); // Prints names of each player
+	    }
+	}
+	System.out.println( "===========================" );
+
+	if( hasNoWinner( players ) ) {
 	
-	while (roundNumber < 3){
-	    i=0; // lit for a FULL ROUND!
-	    System.out.println(" Current cards on the table:" + tableCards + " "); 
-	    while( i < players.size()){ // needs to be a while loop to mess with incrementer
+	    tableCards.add( getCard() );
+	    tableCards.add( getCard() );
+	    tableCards.add( getCard() );
+	    System.out.println( "[DEALER] Cards dealt: " + tableCards );
 	    
-		int action = 0;
+	    for ( int i = 0 ; i < players.size() ; i++ ) {
+		if ( players.get(i).isInRound() ) prompt( players.get(i) );
+	    }
+	}
+	
+	else if ( !hasNoWinner( players ) ) {
+	    String winner = "";
+	    for ( int i = 0 ; i < players.size() ; i++ ) {
+		if( players.get(i).isInRound() ) winner = players.get(i).getName();
+	    }
+	    System.out.println();
+	    System.out.println( "===========================" );
+	    System.out.println( "The winner of the round is " + winner );
+	    System.out.println( "===========================" );
+	    return;
+	}
+
+	// Print out remaining players
+	System.out.println( "===========================" );
+	System.out.println( "Players still in the round:" );
+	for(int k = 0; k < players.size(); k++){
+	    if ( players.get(k).isInRound() ) {
+		System.out.println(players.get(k).getName()); // Prints names of each player
+	    }
+	}
+	System.out.println( "===========================" );
+	    
+	// For future turns
+	int additionalTurns = 0;
+	while ( additionalTurns < 2 && hasNoWinner( players ) ) {
+	    tableCards.add( getCard() );
+	    System.out.println( "[DEALER] Current cards: " + tableCards );
+	    for ( int i = 0 ; i < players.size() ; i++ ) {
+		if( players.get(i).isInRound() ) prompt( players.get(i) );
+	    }
+	    additionalTurns++;
+	    if ( !hasNoWinner( players ) ) {
+		String winner = "";
+		for ( int i = 0 ; i < players.size() ; i++ ) {
+		    if( players.get(i).isInRound() ) winner = players.get(i).getName();
+		}
 		System.out.println();
-		System.out.println( "========== Player " + currentPlayers.get(i).getName() + "'s turn ==========" );
-		System.out.println( "Your cards are"+ " " + currentPlayers.get(i).getHand() );
-		    
-		System.out.println( "Your balance is" + " " + currentPlayers.get(i).getBalance() );
-		System.out.println( "Would you like to 1. Call, 2. Raise, or 3. Fold" );
-		System.out.println( "Please type the integer that corresponds to your decision" );
-		action = Keyboard.readInt();
-
-		// CALL
-
-		if ( action == 1 ) {
-		    players.get(i).callRaise(stayInBet); // callRaise is universal method for calling raising and folding
-		    pool+=stayInBet;
-		    System.out.println( "You called." );
-		    System.out.println( "Updated balance: " + players.get(currentIndex).getBalance() );
-		}
-
-		// RAISE
-
-		else if ( action == 2 ) {
-		    System.out.println( "How much would you like to raise by? ( Must be AT LEAST " + (stayInBet + 100) + " )" ); // add in 100 increments
-		    double raiseAmt = Keyboard.readDouble();
-		    players.get(i).callRaise( raiseAmt );
-		    if ( raiseAmt > stayInBet ){
-			stayInBet=raiseAmt;
-			System.out.println( "Raise - current bet amount is now " + stayInBet);
-			numRaises++;
-			pool+=raiseAmt;
-		    }
-		    else {
-			System.out.println( "Not enough money! All-in'd instead!" );
-			pool+=raiseAmt;		
-		    }
-		    System.out.println( "Updated balance: " + players.get(i).getBalance() );
-		}
-	    
-		// FOLD
-
-		else if ( action == 3 ){
-		    players.get(i).callRaise(0);
-		    currentPlayers.remove(i);
-		    System.out.println( "You are now out of this round." );
-		    System.out.println( "Updated balance: " + players.get(i).getBalance() );
-		    System.out.println();
-		    i--;//if you fold, the array shrinks, this is to avoid skipping over a player
-		}
-   
-
-		if ( (i == players.size() - 1) && (numRaises > 0 ) ) {// resets the loop
-		    i=0; // resets i 
-		    numRaises--;
-		}
-		else {
-		    i++;
-		}
-	    } // ends loop within raises
-	    System.out.println("Players still in the round:");
-	    for(int k = 0; k < currentPlayers.size(); k++){
-		System.out.println(currentPlayers.get(k).getName()); // return names of each player
-		currentPlayers.get(k).setRB(0); // set each player bet to 0 ( how much needed at starting round )
-		stayInBet=0; // this resets every round, only has 100 for first round ( acts as 'big blind' ) 
+		System.out.println( "===========================" );
+		System.out.println( "The winner of the round is " + winner );
+		System.out.println( "===========================" );
+		return;
 	    }
-	    stayInBet=0;
-	    if (roundNumber==0){
-		    tableCards.add( getCard() );
-		    tableCards.add( getCard() );
-		    tableCards.add( getCard() );
-		}
-	    else{
-		tableCards.add(getCard());
-	    }
-	    System.out.println("Pool of $ bills: " + pool + "$ USD" );
-	    roundNumber++;
-	} // ends loop within number of cards
-    } // end playGame
-} // end table
-
-/* Graveyard
-
-
-	// System.out.println( retArray( _deck ) ); // Diag
-
-// System.out.println( retArray( _deck ) ); // Diag
-
-
-int choice1 = 0;
-nt choice2 = 0;
-       
-
-tableCards = new ArrayList<String>();
-tableCards.add( getCard() );
-tableCards.add( getCard() );
-tableCards.add( getCard() );
+	}
+	
+    } // end playRound()
     
-//System.out.print(retArray(_deck)); Diag
-System.out.println("===== Table Cards =====");
-System.out.println(getTC());
-System.out.println();
-
-for (int i = 0; i < players.size(); i++){
-
-}
-
-/*
-System.out.println("Player1's cards: ");
-System.out.println(getPC1());	
-System.out.println("Player2's cards: ");
-System.out.println(getPC2());	// END TESTING ZONE
-
-while (tableCards.length < 5){
-System.out.println("\nPlayer one, please enter 1 if you want call, or 2 if you want to fold.");
-choice1 = Keyboard.readInt();
-if (choice1 == 1){
-System.out.println("Player two, please enter 1 if you want call, or 2 if you want to fold.");
-choice2 = Keyboard.readInt();		
-if(choice2 == 1){
-expand();
-tableCards[tableCards.length - 1] = getCard();
-playRound();
-}
-else{
-System.out.println("Round over");
-break;		    
-}
-}
-else{
-System.out.println("Round over");
-break;		
-}
-	   
-}
-/
-}//end playRound()
-
-  
-public void playGame() {
-	
-	
-
-} // end playGame()
- 
-
-}
-
-
-	while (tableCards.size() < 6) {
-	   
-	    
-	    if ( (i == currentPlayers.size() - 1) && (numRaises > 0 ) ){
-		i=-1; // it will iterate up and start loop over again :))))
-		numRaises--;
-	    }
-*/
+} // end Table

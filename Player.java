@@ -15,10 +15,12 @@ public class Player /*implements Comparable*/ {
     public double balance;
     public double playerBet; // playerBet for every round - resets to 0 after every round
     public double totalBet; // totalBet is for all 3 rounds
+    public boolean inRound;
 
     public Player() {
 	balance = 1000.00;
 	name = "Player";
+	inRound = true;
     }
 
     //public Player( float bigBlind, float smallBlind){
@@ -37,6 +39,10 @@ public class Player /*implements Comparable*/ {
     public String getBalance(){
 	return balance + "";
     }
+
+    public boolean isInRound() {
+	return inRound;
+    }
     
     public void setRB( double betAmount ) { // set player bet to 0 after every round, to bigblind/100 other times
 	playerBet = betAmount;
@@ -44,6 +50,10 @@ public class Player /*implements Comparable*/ {
 
     public void setName( String newName ) {
 	name = newName;
+    }
+
+    public void setInRound( boolean newBool ) {
+	inRound = newBool;
     }
 
     public void giveCards( String card1, String card2 ) {
