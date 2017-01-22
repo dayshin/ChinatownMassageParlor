@@ -134,8 +134,7 @@ public class Table {
 	for(int i = 0; i < players.size(); i++){
 	    currentPlayers.add(players.get(i));
 	}
-	System.out.println("\n=====================" + "\nPlayers at this table:" + "\n=====================");
-
+	//	System.out.println("\n=====================" + "\nPlayers at this table:" + "\n====================="); misplaced for now - probably irrelevant
 	int i;
 	int roundNumber=0;
 	
@@ -218,6 +217,7 @@ public class Table {
 		tableCards.add(getCard());
 	    }
 	    System.out.println("Pool of $ bills: " + pool + "$ USD" );
+	    roundNumber++;
 	} // ends loop within number of cards
     } // end playGame
 } // end table
