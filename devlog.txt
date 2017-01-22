@@ -11,11 +11,9 @@ Texas Hold'em
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow we so BOSS bc...
-
+We wanted a random card generator - we had an array that copied an array, etc ttjreiokjikmm
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Incomplete project :(
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -23,8 +21,7 @@ wow! oo!...
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-we changed ___ to ___ bc...
-
+A for loop wouldn't work because we needed to account for raise -- we needed to switch to a 'while' loop to make sure it iterates twice whenever someone raises
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 tales of wisdom gained...
@@ -95,7 +92,9 @@ tales of wisdom gained...
 
 --------------------------------------------------------------
 2017-01-21
-
+<Datian>: Added multiple instance variables, made the game run smoothly for one full round 
+<Bryan, Datian> Call, raise, fold run smoothly
+<Datian> Merged call raise fold together, pool amount is tracked
 --------------------------------------------------------------
 2017-01-22
 
