@@ -120,6 +120,8 @@ public class Table {
     public void prompt( Player p ) {
 	
 	System.out.println( "========== Player " + p.getName() + "'s turn ==========" );
+
+	System.out.println("The current cards are: " + tableCards);
 	System.out.println( "Your cards are " + p.getHand() );
 		    
 	System.out.println( "Your balance is " + p.getBalance() );
@@ -188,6 +190,7 @@ public class Table {
     public void prompt2 ( Player p ){//This method is called after the cards are dealt
 
 	System.out.println( "========== Player " + p.getName() + "'s turn ==========" );
+	System.out.println("The current cards are: " + tableCards);
 	System.out.println( "Your cards are " + p.getHand() );
 		    
 	System.out.println( "Your balance is " + p.getBalance() );
@@ -296,23 +299,6 @@ public class Table {
 	    else {j++;}
 	}
 
-	
-	/*if( hasNoWinner( players ) ) {
-	
-	    tableCards.add( getCard() );
-	    tableCards.add( getCard() );
-	    tableCards.add( getCard() );
-	    System.out.println( "[DEALER] Cards dealt: " + tableCards );
-	    
-	    for ( int i = 0 ; i < players.size() ; i++ ) {
-		if ( players.get(i).isInRound() ) prompt2( players.get(i) );
-		if ( (i == players.size() - 1) && (numRaises > 0 ) ) {// resets the loop
-		    i=0; // resets i 
-		    numRaises--;
-		}
-
-	    }
-	    }*/
 	
 	if ( !hasNoWinner( players ) ) {
 	    String winner = "";

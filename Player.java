@@ -61,16 +61,6 @@ public class Player /*implements Comparable*/ {
 	Card2 = card2;
 	hand = card1 + " " + card2;
     }
-    /*
-      public float playerAction(float Amt){
-	if(Amt <= playerBet){
-	    System.out.println(
-			       "Welcome to Poker! I'm a bunny.\n " );
-	    //  option[0] + option[1] + option[2])	
-		}
-	return Keyboard.readFloat();
-    }
-    */
 
     // Returns how much they call by, ie. if they don't have enough, it just returns their current balance.
     // Raise the same way
