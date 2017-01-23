@@ -37,16 +37,13 @@ public class Table {
     /*
       private static Player firstPlayer;
       private static Player secondPlayer;
-
       public Table(){
       firstPlayer= new Player(0,0);
       secondPlayer= new Player(0,0);
-
       _deck = new String[DECK.length];
       for( int i = 0; i < DECK.length; i++ ){	 // copy deck	
       _deck[i]=  DECK[i];
       }
-
       }
     */
 

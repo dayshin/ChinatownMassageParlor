@@ -12,20 +12,25 @@ Texas Hold'em
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We wanted a random card generator - we had an array that copied an array, etc ttjreiokjikmm
+Players have privacy when viewing their cards, by clearing the terminal.
+
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+RAISING HAS SOME ISSUES
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow! oo!...
+There's a way to clear the terminal through java!
+
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-A for loop wouldn't work because we needed to account for raise -- we needed to switch to a 'while' loop to make sure it iterates twice whenever someone raises
+A for loop wouldn't work because we needed to account for raise -- we needed to switch to a 'while' loop to make sure it iterates twice whenever someone raises.
+Made Player attributes public for ease of access.
+
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-tales of wisdom gained...
-||||||||||||||||||||||||||||||||||||||||||
+############################################
 
 
 
@@ -102,7 +107,7 @@ tales of wisdom gained...
 <Eric,Bryan> :: Added compatibility for future rounds.
 --------------------------------------------------------------
 2017-01-22
-
+<Eric> :: Made user unable to raise lower than the specified minimum
 <Bryan> :: Fixed issues raised by raising
 
 --------------------------------------------------------------
