@@ -62,26 +62,6 @@ public class Player /*implements Comparable*/ {
 	hand = card1 + " " + card2;
     }
 
-    // Returns how much they call by, ie. if they don't have enough, it just returns their current balance.
-    // Raise the same way
-    public double callRaise( double stayInBet ) {
-	if( stayInBet == 0 ){ // fold or check, no more money put inside
-	    return 0;
-	}
-	 // raise or call doesn't matter from player end
-	if ( stayInBet >= balance){
-	    double retDouble = balance;
-	    playerBet += balance; // always adding balance, player could've bet before
-	    return retDouble;
-	}
-	
-	balance = balance - stayInBet + playerBet; // add what player already bet that round, subtract how much it takes to stay in bet for that round
-	return stayInBet; // how much total bet is
-    }     
-
-
-
-
     public int cardVal(String card){
 	if ( card.substring(0,1).equals("J") ){
 	    return 11;
