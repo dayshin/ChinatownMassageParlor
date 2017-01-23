@@ -16,7 +16,7 @@ Players have privacy when viewing their cards, by clearing the terminal.
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-RAISING HAS SOME ISSUES
+
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -27,6 +27,7 @@ MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 A for loop wouldn't work because we needed to account for raise -- we needed to switch to a 'while' loop to make sure it iterates twice whenever someone raises.
 Made Player attributes public for ease of access.
+
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
