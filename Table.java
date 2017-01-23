@@ -141,7 +141,7 @@ public class Table {
 	    
 	    double ogPlayerBet = p.playerBet;//if someone raises the stayInBet from 100 to 200, and you already bet 100 you just need to add 100 to your original bet
 	    if (p.balance < stayInBet){
-		System.out.println("You don't have enough money to call, ALL In'd instead!");
+		System.out.println("You don't have enough money to call, All In'd instead!");
 		p.playerBet = p.balance;
 		p.balance -= p.balance;
 		pool = pool + p.balance - ogPlayerBet;
@@ -164,16 +164,18 @@ public class Table {
 	    System.out.println( "The bet required to stay in the round is: " + stayInBet );
 	    System.out.println( "How much would you like to raise by? ( Must be at least " + (stayInBet + 50) + " )" ); // add in 50 increments
 	    double raiseAmt = Keyboard.readDouble();
-	    stayInBet = raiseAmt;
-	    
-	    clearScreen();
+	    if ( raiseAmt >= ( stayInBet + 50 ) ) {
+		stayInBet = raiseAmt;
+		clearScreen();
+	    }
+	    else {
+		System.out.println( "Your raise was too low!  Returning to action screen..." );
+		prompt( p );
+	    }
 	    
 	    p.playerBet = raiseAmt;		
 	    p.balance -= stayInBet;
 	    System.out.println( "Raise - current bet amount is now " + stayInBet);
-	    if (j > 0){
-	    numRaises++;
-	    }
 	    pool += stayInBet;
 	}
 	    
@@ -208,7 +210,7 @@ public class Table {
 	if ( action == 1 ) {
 	    double ogPlayerBet = p.playerBet;//if someone raises the stayInBet from 100 to 200, and you already bet 100 you just need to add 100 to your original bet
 	    if (p.balance < stayInBet){
-		System.out.println("You don't have enough money to call, ALL In'd instead!");
+		System.out.println("You don't have enough money to call, All In'd instead!");
 		p.playerBet = p.balance;
 		p.balance -= p.balance;
 		pool = pool + p.balance - ogPlayerBet;
@@ -231,16 +233,18 @@ public class Table {
 	    System.out.println( "The bet required to stay in the round is: " + stayInBet );
 	    System.out.println( "How much would you like to raise by? ( Must be at least " + (stayInBet + 50) + " )" ); // add in 50 increments
 	    double raiseAmt = Keyboard.readDouble();
-	    stayInBet += raiseAmt;
-
-	    clearScreen();
+	    if ( raiseAmt >= ( stayInBet + 50 ) ) {
+		stayInBet = raiseAmt;
+		clearScreen();
+	    }
+	    else {
+		System.out.println( "Your raise was too low!  Returning to action screen..." );
+		prompt( p );
+	    }
 	    
 	    p.playerBet = raiseAmt;
 	    p.balance -= raiseAmt;
 	    System.out.println( "Raise - current bet amount is now " + stayInBet);
-	    if (j > 0) {
-	    numRaises++;
-	    }
 	    pool += raiseAmt;
 
 	}
@@ -268,6 +272,16 @@ public class Table {
 	if ( counter == 1 ) retBool = false;
 	return retBool;
     }
+
+    /*
+    public void removeLosers( ArrayList<Player> players ) {
+	for ( Player p : players ) {
+	    if ( p.balance < 0.0 ) {
+		p.setInRound( false );
+	    }
+	}
+    }
+    */
     
     public void playRound(){
 
@@ -283,9 +297,7 @@ public class Table {
 	}
 
 	stayInBet = 100; // Starting bet
-
-	//	System.out.println("\n=====================" + "\nPlayers at this table:" + "\n====================="); misplaced for now - probably irrelevant
-
+	
 	j = 0;
 	while( j < players.size() ){
 	    players.get(j).giveCards( getCard(),getCard() );
@@ -299,6 +311,7 @@ public class Table {
 	    else {j++;}
 	}
 
+	//removeLosers( players );
 	
 	if ( !hasNoWinner( players ) ) {
 	    String winner = "";
@@ -330,6 +343,7 @@ public class Table {
 	// For future turns
 	int additionalTurns = 0;
 	while ( additionalTurns < 3 && hasNoWinner( players ) ) {
+	    //removeLosers( players );
 	    clearScreen();
 	    for( int i = 0; i < players.size(); i++ ){
 		players.get(i).playerBet = 0;
