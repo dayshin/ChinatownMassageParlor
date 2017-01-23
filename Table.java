@@ -169,7 +169,9 @@ public class Table {
 		System.out.println( "Your raise was too low!  Returning to action screen..." );
 		prompt( p );
 	    }
-	    
+	    if( j > 0 ){
+	    numRaises++;
+	    }//only reset the prompt if anyone but the first person raises
 	    p.playerBet = raiseAmt;		
 	    p.balance -= stayInBet;
 	    System.out.println( "Raise - current bet amount is now " + stayInBet);
@@ -238,7 +240,9 @@ public class Table {
 		System.out.println( "Your raise was too low!  Returning to action screen..." );
 		prompt( p );
 	    }
-	    
+	    if (j > 0){
+	    numRaises++;
+	    }
 	    p.playerBet = raiseAmt;
 	    p.balance -= raiseAmt;
 	    System.out.println( "Raise - current bet amount is now " + stayInBet);
