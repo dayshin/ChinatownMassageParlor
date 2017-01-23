@@ -82,33 +82,19 @@ public class Player /*implements Comparable*/ {
 
 
 
-    public int card1Val(){
-
-	if ( Card1.substring(0,1) == "J" ){
+    public int cardVal(String card){
+	if ( card.substring(0,1).equals("J") ){
 	    return 11;
 	}
-	if ( Card1.substring(0,1) == "Q" ){
+	if ( card.substring(0,1).equals("Q") ){
 	    return 12;
 	}
-	if ( Card1.substring(0,1) == "K" ){
+	if ( card.substring(0,1).equals("K") ){
 	    return 13;
 	}
-	return Integer.parseInt(Card1.substring(0,1));
+	return Integer.parseInt(card.substring(0,1));
     }
-    
-    public int card2Val(){
 
-	if ( Card2.substring(0,1) == "J" ){
-	    return 11;
-	}
-	if ( Card2.substring(0,1) == "Q" ){
-	    return 12;
-	}
-	if ( Card2.substring(0,1) == "K" ){
-	    return 13;
-	}
-	return Integer.parseInt(Card1.substring(0,1));
-    }
     
     public String card1suit(){
 	return Card1.substring(1);
@@ -140,5 +126,30 @@ public class Player /*implements Comparable*/ {
 	System.out.println(Brien.compareTo(Datian));
 	}*/
 	return tableCards;
+    }
+
+    // sortCards - returns arraylist sorted by card value
+    public ArrayList<String> sortCards(ArrayList<String> cards){
+	String holder;
+	for(int j=0;j<cards.size();j++){
+	    for(int i=1;i<cards.size();i++){
+		if(cardVal(cards.get(i))<cardVal(cards.get(i-1))){
+		    holder = cards.get(i);
+		    cards.set(i, cards.get(i-1));
+		    cards.set(i-1,holder);
+		}
+	    }
+	}
+	return cards;
+    }
+    public static void main(String[] args){
+	Player datian= new Player();
+	ArrayList<String> lolCards=new ArrayList<String>();
+	lolCards.add("5D");
+	lolCards.add("JB");
+	lolCards.add("3A");
+	lolCards.add("4D");
+	lolCards.add("KD");	
+	System.out.println(datian.sortCards(lolCards));
     }
 }
