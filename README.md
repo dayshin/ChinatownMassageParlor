@@ -17,6 +17,7 @@ Thing(s) to note:
 1. If your current bet is less than the bet required to stay in the round, you have to call or raise.
 2. It is expected that you raise an amount greater than the current stayInBet.
 3. If you all in'd, the only option you should choose is check, or call in the first round.
+4. D stands for diamonds, C for Clubs, H for Hearts, and S for Spades
 
 Description:
     Our project is a Texas Hold'em Poker Game.  The user will be able to designate the number of players playing in one game, and each player will take turns to either call, raise, fold or check.
