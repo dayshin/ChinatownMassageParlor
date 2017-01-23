@@ -1,8 +1,7 @@
-==================================================================================
+
 
                                  Texas Hold'em
 
-==================================================================================
 Created by mandarinOranges ( Bryan Chan, Datian Zhang, Eric Chen )
 
 Launch Instructions:
