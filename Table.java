@@ -27,25 +27,12 @@ public class Table {
 
     public String[] _deck;
     private ArrayList<Player> players;
-    private ArrayList<Player> currentPlayers;
     public ArrayList<String> tableCards;
     private double pool;
     private double stayInBet;
     private int numRaises;
     private int currentIndex;
     private int j;//Needed cause raise causes issues if it's not an inst var.
-    /*
-      private static Player firstPlayer;
-      private static Player secondPlayer;
-      public Table(){
-      firstPlayer= new Player(0,0);
-      secondPlayer= new Player(0,0);
-      _deck = new String[DECK.length];
-      for( int i = 0; i < DECK.length; i++ ){	 // copy deck	
-      _deck[i]=  DECK[i];
-      }
-      }
-    */
 
     public Table( int numPlayers ) {
 
